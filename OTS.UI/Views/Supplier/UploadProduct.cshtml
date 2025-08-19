@@ -1,0 +1,99 @@
+﻿@model IEnumerable<OTS.Data.Models.ClientModel>
+@{
+    ViewData["Title"] = "UploadProduct";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+@* <div class="add-vendor-wrapper">
+    <h3>Upload Product</h3>
+    <form method="post" enctype="multipart/form-data">
+
+   <div class="row">
+       <div class="col-md-6">
+                <div class="btn-group">
+                    <select class="form-control" name="vendorid">
+                        <option value="0">---Select Client---</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+       </div>
+       <div class="col-md-6">
+                <label for="formFile" class="form-label">Choose file or drop here</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+   </div>
+    <div class="row">
+        <div class="col-md-12">
+                <button id="run-time-order-submit-btn">Upload Product</button>
+        </div>
+    </div>
+    
+
+   
+    </form>
+</div> *@
+
+<div class="run-time-order-file-upload">
+    <h3>Upload Product</h3>
+     <form method="post" enctype="multipart/form-data">
+    <div class="btn-group">
+        <select class="form-control" name="vendorid">
+            <option value="0">---Select Client---</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-5">
+        <label for="formFile" class="form-label">Choose file or drop here</label>
+            <input class="form-control" type="file" id="formFile" name="file">
+    </div>
+
+    <button id="run-time-order-submit-btn">Upload Product</button>
+    </form>
+</div>
+
+<div class="row">
+    <!-- Form controls -->
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <h5 class="card-header">Upload Product Images</h5>
+            <div class="card-body demo-vertical-spacing demo-only-element">
+                <form method="post" action="../Supplier/product_upload_images" enctype="multipart/form-data">
+
+
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+
+                                <input type="file" name="file" multiple accept=".jpg,.png,.gif" />
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5%">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Upload Product
+                            </button>
+                            @*  <button type="button" class="btn btn-outline-secondary waves-effect">
+                            <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                            </button> *@
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

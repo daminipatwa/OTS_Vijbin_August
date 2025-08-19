@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "createchallan";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:10%">Images</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.order_list)
+            {
+                <tr>
+                    <td><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:50%"></td>
+
+                    <td>@item.Description</td>
+                    <td>@item.category</td>
+                    <td>
+                        @if (@item.updated_qty == "0")
+                        {
+                            @item.qty
+                        }
+                        else
+                        {
+                            @item.updated_qty
+                        }
+                    </td>
+                    <td>@item.rate</td>
+
+                </tr>
+            }
+            <tr>
+                <td colspan="3"></td>
+                <td><h5>Total Amount :</h5></td>
+                <td style="text-align:right">
+                    <h5>
+                        @{
+                            decimal amount = 0;
+                            foreach (var item in Model.order_list)
+                            {
+                                @if (@item.updated_qty == "0")
+                                {
+                                    amount = amount + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate));
+                                }
+                                else
+                                {
+                                    amount = amount + (Convert.ToDecimal(item.updated_qty) * Convert.ToDecimal(item.rate));
+                                }
+                            }
+                        }
+                        @amount Rs.
+                    </h5>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3"></td>
+                <td>
+                    <h5>GST Amount :</h5>
+                </td>
+                <td style="text-align:right">
+                    <h5>
+                        @{
+                            decimal gst = 0;
+                            foreach (var item in Model.order_list)
+                            {
+
+                                gst = gst + (Convert.ToDecimal(item.gst_amt));
+
+                            }
+                        }
+                        @gst Rs.
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td>
+                    <h5> Grand Total :</h5>
+                </td>
+                <td style="text-align:right">
+                    <h5>
+                        @{
+                            decimal grandtotal = Convert.ToDecimal(gst) + Convert.ToDecimal(amount);
+                        }
+                        @grandtotal Rs.
+                    </h5>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <form method="post" action="Create_Invoice">
+        <input type="hidden" value="0" name="id" id="hdnid" />
+        <button type="submit" class="submit">Submit</button>
+    </form>
+
+</div>
+<hr>
+@section Scripts1 {
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        $(document).ready(function () {
+            $("#hdnid").val(getUrlVars()["id"]);
+        });
+    </script>
+}

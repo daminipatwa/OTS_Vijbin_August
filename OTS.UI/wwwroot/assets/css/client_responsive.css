@@ -1,0 +1,112 @@
+
+@media only screen and (max-width: 768px) {
+    .order-wrappers{
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .order-innerWrapper{
+        width: 48.3%;
+        margin-bottom: 10px;
+     }
+     .date-wrapper{
+        display: flex;
+        flex-direction: column;
+        width: max-content;
+    }
+    .right-area-wrapper{
+        width:max-content;
+    }
+    .recent-orders-wrapper{
+        width:max-content;
+    }
+    .master-wrapper-second{
+        width: max-content;
+    }
+    .run-time-order{
+        width: max-content;
+    }
+    .add-vendorform{
+        flex-direction: column;
+    }
+}     
+
+@media only screen and (max-width: 500px) {
+    .order-wrappers{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 5px 10px 5px 10px;
+    }
+    .order-innerWrapper{
+        width: 100%;
+    }
+  }  
+@media only screen and (max-width: 480px) {
+    .activity-main-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .activity-left-wrapper{
+        width: 100%;
+    }
+    .activity-right-wrapper{
+        width: 100%;
+    }
+    #add-vendorform > button {
+        padding: 10px;
+        width: 27%;
+    }
+    #add-vendorform > #vendor-submit-btn{
+        display: flex;
+        flex-direction: column;
+    }
+    #add-vendorform{
+        flex-direction: column;
+    }
+  }
+  /* @media only screen and (max-width: 768px) {
+    .date-wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    
+} */
+/* @media only screen and (max-width: 480px) {
+    #add-vendorform > button {
+        padding: 10px;
+        width: 27%;
+    }
+    
+} */
+/* @media only screen and (max-width: 768px) {
+    .right-area-wrapper{
+        width:max-content;
+    }
+    .recent-orders-wrapper{
+        width:max-content;
+    }
+} */
+@media only screen and (max-width: 1024px) {
+    .recent-orders-wrapper{
+        width:max-content;
+    }
+}
+/* @media only screen and (max-width: 480px) {
+    #add-vendorform > #vendor-submit-btn{
+        display: flex;
+        flex-direction: column;
+    }
+} */
+/* @media only screen and (max-width: 768px) {
+ .master-wrapper-second{
+    width: max-content;
+}
+.run-time-order{
+    width: max-content;
+}
+.add-vendorform{
+    flex-direction: column;
+}
+} */

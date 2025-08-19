@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Viewagreement";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View Agreement</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    This agreement has been
+                    signed by the parties
+                </th>
+                <th>Date of Agreement</th>
+                <th>Download / View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.client_name</td>
+                    <td>@item.createdon</td>
+                    <td> <a href="../uploads/@item.file_path" download="" class="btn btn-primary"><i class="fa-solid fa-download"></i></a> | <a href="../uploads/@item.file_path" target="_blank" class="btn btn-warning"><i class="fas fa-eye"></i></a></td>
+                </tr>
+            }
+          
+        </tbody>
+
+    </table>
+
+
+</div>
+

@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewData["Title"] = "addneworder";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', 'sans-serif';
+    font-size: 17px;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.header{
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5px;
+}
+.bell{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 7px 10px;
+    border-radius: 3px;
+    margin: 5px;
+}
+.user-wrapper{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-wrapper img{
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+#search-form{
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 5px;
+    width: 50%;
+    margin-left: 50%;
+} 
+
+.form-control me-2{
+    outline: none;
+}
+.search-here{
+    width: 50%;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    margin-left: 30px;
+}
+.nav-link{
+    color: black;
+}
+.dropdown-item{
+    background-color: cornsilk;
+}
+.icons-wrapper{
+    display: ruby;
+}
+.NewOrder-wrapper{
+ width: 100%;
+ background-color: whitesmoke;
+}
+#Overviewimg{
+    width: 40%;
+    height: 70px;
+    /* border: 1px solid black; */
+}
+
+    input[type="button"] {
+    background-color: rgb(241, 129, 80); 
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+input[type="submit"]:hover{
+    background: linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+
+background: -moz-linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+
+background: -webkit-linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F4520D", endColorstr="#0D3282", GradientType=1 );
+}
+
+</style>
+<div class="card">
+    <div class="card-body">
+        <h2>New Order</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Make</th>
+                    <th>HSN Code</th>
+                    @* <th>GST(%)</th>*@
+                    <th>Rate</th> 
+                    <th>Stock</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.product_Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/uploads/@item.ImageUrl" alt="" id="Overviewimg">
+                            @if (item.wishlistid == 0)
+                            {
+                                <a href="#" onclick="addtwishlist(0,@item.id)">
+                                    <i class="ri-heart-3-line" style="margin-top :1px;
+                    position :absolute;
+                    margin-left:15px;"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" onclick="addtwishlist(@item.wishlistid,@item.id)">
+                                    <i class="ri-heart-3-fill" style="margin-top :1px;
+                    position :absolute;
+                    margin-left:15px;color:red"></i>
+                                </a>
+                                
+                            }
+
+                            <input type="button" value="Add to Cart" onclick="addtcart(0,@item.id,@item.Rate)">
+
+                        </td>
+                        <td>@item.Description</td>
+                        <td>@item.Category</td>
+                        <td>@item.Make</td>
+                        <td>@item.HSN</td>
+                        @* <td>18</td>*@
+                        <td>@item.Rate</td> 
+                        <td>
+                            @if (Convert.ToInt32(@item.stock) > 0)
+                            {
+                                <lable class="label label-success">In Stock</lable>
+                            }else
+                            {
+                                <lable class="label label-danger">Out Of Stock</lable>
+                            }</td>
+                        <td>@item.stock</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts1 {
+    <script>
+        function addtcart(id, productid, rate) {
+            $.getJSON('../User/add_tocart?id=' + id + '&productid=' + productid + '&qty=1&rate=' + rate + '', function (data) {
+
+                success_opup("Success", "Product Add In cart Successsfully")
+            })
+        }
+
+        function addtwishlist(id, productid) {
+            $.get('../User/add_towishlist?id=' + id + '&productid=' + productid + '', function (data) {
+                if (id == 0) {
+                    success_opup("Success", "Product Add In Wishlist Successsfully")
+                    window.location.reload();
+                }
+                else{
+                    success_opup("Success", "Product Remove From Wishlist Successsfully")
+                    window.location.reload();
+                }
+            })
+        }
+        function success_opup(title, text) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: "success",
+                customClass: {
+                    confirmButton: "btn btn-primary waves-effect waves-light"
+                },
+                buttonsStyling: !1
+            })
+        }
+    </script>
+}

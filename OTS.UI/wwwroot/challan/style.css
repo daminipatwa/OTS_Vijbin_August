@@ -1,0 +1,136 @@
+body {
+/*    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;*/
+}
+
+.invoice-container {
+    /*width: 80%;*/
+    /*margin: 5px auto;*/
+    /*background: #fff;*/
+   /* padding: 5px;*/
+    /*border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    /*margin-bottom: 20px;*/
+}
+
+.company-info, .invoice-info {
+    width: 50%;
+    border: 1px solid black;
+    padding: 10px;
+}
+.footer-main{
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+.company-info h2, .invoice-info h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.customer-info {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.items-table th, .items-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.totals {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary {
+    width: 45%;
+}
+
+.total-amount {
+    width: 45%;
+    text-align: right;
+}
+
+.footer {
+    font-size: 14px;
+    padding: 11px;
+    border: 1px solid black;
+    margin-left: 80px;
+}
+.footer-wrapper{
+    font-size: 8px;
+    padding: 11px;
+    border: 1px solid black;
+    display: inline-flex;
+   
+}
+.autho-sign{
+    padding: 10px;
+}
+.footer2-wrapper{
+    /* border: 1px solid black; */
+    padding: 10px;
+    margin-top: 100px;
+}
+
+
+/*body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+}*/
+
+/*.invoice-container {
+    background-color: #ffffff;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}*/
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.sub-title {
+    text-align: center;
+} 
+.party-info{
+    border: 1px solid black;
+    padding: 10px;
+    width: 50%;
+}
+.invoice-header{
+    display: inline-flex;
+}
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.invoice-info-head{
+    display: inline-flex;
+}
+

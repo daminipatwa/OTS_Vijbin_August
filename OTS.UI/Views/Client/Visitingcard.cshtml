@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Visitingcard";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+<div class="right-area-wrapper">
+    <div class="row gy-4 mb-4">
+     
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4">
+                <div class="card p-2 h-100 shadow-none border">
+                    <div class="rounded-2 text-center mb-3">
+                        <a href="../Client/Visiting_form?id=@item.id"><img src="~/uploads/@item.ImageUrl" class="img-fluid" /></a>
+                    </div>
+                    <div class="card-body p-3 pt-2">
+                        <p class="mt-2">@item.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- ----------------------OrderWrapper Start------------------------------>
+
+
+</div>
+

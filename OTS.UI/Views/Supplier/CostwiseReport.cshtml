@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "CostwiseReport";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>MIS Report Cost Center wise</h3>
+    <div class="date-wrapper">
+        <div class="inputs">
+            <div class="client">
+                <label for="Order-ID">Cost Center Name</label>
+                <input type="text" class="form-date">
+            </div>
+
+            <div class="from">
+                <label for="from-date">From Date</label>
+                <input type="date" class="form-date">
+            </div>
+            <div class="upto">
+                <label for="upto-date">Upto Date</label>
+                <input type="date" class="form-date">
+            </div>
+            <div class="Report">
+                <form class="flex" role="search">
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <button class="btn btn-outline-primary" type="submit">Export To PDF</button>
+                    <button class="btn btn-outline-primary" type="submit">Export To Excel</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Cost Center Name</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Payment</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Region</th>
+                <th>Order Placed Time</th>
+                <th>Dispatch</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1108</td>
+                <td>xyz</td>
+                <td>pencil</td>
+                <td>stationary</td>
+                <td>UPI</td>
+                <td>150.00 rs.</td>
+                <td>15</td>
+                <td>North</td>
+                <td>3:00 </td>
+                <td>Closed</td>
+            </tr>
+            <tr>
+                <td>1108</td>
+                <td>xyz</td>
+                <td>pencil</td>
+                <td>stationary</td>
+                <td>UPI</td>
+                <td>150.00 rs.</td>
+                <td>15</td>
+                <td>North</td>
+                <td>3:00 </td>
+                <td>Closed</td>
+
+            </tr>
+            <tr>
+                <td>1108</td>
+                <td>xyz</td>
+                <td>pencil</td>
+                <td>stationary</td>
+                <td>UPI</td>
+                <td>150.00 rs.</td>
+                <td>15</td>
+                <td>North</td>
+                <td>3:00 </td>
+                <td>Closed</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+</div>
+<hr>
+
+

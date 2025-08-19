@@ -1,0 +1,202 @@
+﻿ @{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-wide  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>OTS | Login</title>
+
+
+    <meta name="description" content="Materialize – is the most developer friendly &amp; highly customizable Admin Dashboard Template." />
+    <meta name="keywords" content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://1.envato.market/materialize_admin">
+
+
+    <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+   
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets/img/ots.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;ampdisplay=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="../../assets/vendor/fonts/materialdesignicons.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Menu waves for no-customizer fix -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <!-- Vendor -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/%40form-validation/umd/styles/index.min.css" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css">
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../../assets/js/config.js"></script>
+
+</head>
+
+<body>
+
+
+    <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Content -->
+
+    <div class="position-relative">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner py-4">
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: -50px;">
+                        <img src="~/loginassets/logo-wrapper1.png" style="width:35%"/>
+                    </div>
+                    <div class="col-md-8">
+                        <h4>
+                            <span style="color: #fe5106">Welcome to Order</span>
+                            <span style="color: #02308a">Tracking system</span>
+                        </h4>
+                    </div>
+                </div>  
+                <!-- Login -->
+               <div class="row" style="margin-top:4%">
+                   <div class="col-md-6">
+                        <div class="card p-2">
+                    <!-- Logo -->
+                @*     <div class="app-brand justify-content-center mt-5" style="text-align:-webkit-center;">
+                        <a href="index.html" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <img src="..\loginassets\logo-wrapper.png" style="width:70%;"/>
+                            </span>
+                            <span class="app-brand-text demo text-heading fw-bold"></span>
+                        </a>
+                    </div> *@
+                    <!-- /Logo -->
+
+                    <div class="card-body mt-2">
+                        <h4 class="mb-2">Hello</h4>
+                                <p class="mb-4">Please login to your account</p>
+
+                        <form id="formAuthentication" class="mb-3" method="Post">
+                                    <div class="form-group mb-3">
+                                        <select class="form-control" name="type">
+                                            <option value="C">Client</option>
+                                            <option value="U">User</option>
+                                            <option value="D">Supplier</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon41"><i class="mdi mdi-account"></i></span>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" aria-label="Username" aria-describedby="basic-addon41">
+                             </div>
+
+
+                                    <div class="input-group mb-3">
+                                            <span class="input-group-text"><i class="mdi mdi-lock"></i></span>
+                                            <input type="password" class="form-control" id="basic-default-password42" name="password" placeholder="············" aria-describedby="basic-default-password42">
+                                            <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
+                                        </div>
+
+                                  
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-me">
+                                    <label class="form-check-label" for="remember-me">
+                                        Remember Me
+                                    </label>
+                                </div>
+                                <a href="auth-forgot-password-basic.html" class="float-end mb-1">
+                                    <span>Forgot Password?</span>
+                                </a>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                   </div>
+                   <div class="col-md-6">
+                        <img src="~/loginassets/19728-removebg-preview.png" />
+                   </div>
+               </div>
+               <div class="row" style="text-align:center;color:black">
+                   <div class="col-md-4">
+                        <i class="mdi mdi-email"></i> <span>info@vijbin.com</span>
+                   </div>
+                    <div class="col-md-4">
+                        <span>All rights are reserved by vijbin Business Solution Pvt Ltd. <a href="https://vijbin.com/" target="_blank">www.vijbin.com</a></span>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="mdi mdi-phone"></i> <span>+91 92261 17370</span>
+                    </div>
+               </div>
+                <!-- /Login -->
+                <img src="~/loginassets/1c54069f1b.jpg" class="authentication-image d-none d-lg-block" />
+                @* <img alt="mask" src="../../assets/img/illustrations/auth-basic-login-mask-light.png" class="authentication-image d-none d-lg-block" data-app-light-img="illustrations/auth-basic-login-mask-light.png" data-app-dark-img="illustrations/auth-basic-login-mask-dark.html" /> *@
+            </div>
+        </div>
+    </div>
+
+    <!-- / Content -->
+
+
+   
+
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
+    <script src="../../assets/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+    <script src="../../assets/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+
+    <!-- Page JS -->
+    <script src="../../assets/js/pages-auth.js"></script>
+    <script src="../../assets/js/form-input-group.js"></script>
+
+</body>
+
+
+</html>
+

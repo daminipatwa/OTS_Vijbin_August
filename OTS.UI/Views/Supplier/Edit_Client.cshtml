@@ -1,0 +1,76 @@
+﻿@model OTS.Data.Models.ClientModel
+@{
+    ViewData["Title"] = "Edit_Client";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="add-vendor-wrapper">
+    <h3>Edit Client</h3>
+    <form method="post" id="add-vendorform" action="../Supplier/client">
+        <input type="hidden" value="@Model.Id" name="Id"/>
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Name" name="name" value="@Model.Name">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Email ID" name="emailid" value="@Model.emailid">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Phone" name="mobileno" value="@Model.mobileno">
+        </div>
+
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="State" name="state" value="@Model.state">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="GST" name="gst" value="@Model.gst">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Location" name="location" value="@Model.location">
+        </div>
+
+        <!-- <div class="form-floating mb-3 col-md-12">
+            <input type="text" class="form-control" id="floatingPassword" placeholder="Location">
+            <label for="floatingLocation">Location</label>
+          </div> -->
+        <!-- <div class="form-floating mb-3 col-md-6">
+            <select class="form-select" aria-label="Default select example">
+                <option value="1">Stationary</option>
+                <option value="2">Visiting</option>
+                <option value="3">Printing</option>
+                <option value="3">Hardware / Supply</option>
+                <option value="3">Book List</option>
+              </select>
+          </div> -->
+        <select class="form-group mb-3 col-md-6 form-select-sm" aria-label="Small select example" name="category" id="ddlcategory">
+            <option selected value="1">Stationary</option>
+            <option value="2">Visiting</option>
+            <option value="3">Printing</option>
+            <option value="4">Hardware / Supply</option>
+            <option value="5">Book List</option>
+        </select>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Region" name="region" value="@Model.region">
+        </div>
+
+        <button type="submit" class="col-md-6" id="vendor-submit-btn">Submit</button>
+        <button class="col-md-6" id="vendor-reset-btn">Reset</button>
+    </form>
+</div>
+@section Scripts {
+
+      $( document ).ready(function() {
+                var s="@Model.category";
+        if(s!="")
+        {
+        $("#ddlcategory").val(s);
+        }
+    });
+
+}
+

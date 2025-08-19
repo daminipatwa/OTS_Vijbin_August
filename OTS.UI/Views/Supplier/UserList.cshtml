@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper" >
+    <h3>View Users</h3>
+    <div style="overflow:auto" class="table table-responsive">
+    <table class="table table-striped" style="width:2240px">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Id</th>
+                <th>Phone No</th>
+                <th>Department</th>
+                <th>Branch</th>
+                <th>Usertype</th>
+                <th>Approvel Type</th>
+                <th>Approved By</th>
+                <th>Billing Address</th>
+                 <th>Shipping Address</th>
+                    <th>Limit Amount</th>
+                    <th>TAT</th>
+                    <th>Region</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.firstname @item.lastname</td>
+                            <td>@item.emailid</td>
+                            <td>@item.contactno</td>
+                            <td>@item.department_name</td>
+                            <td>@item.branch_name</td>
+                            <td>
+                            
+                                    @if (item.usertype == 1)
+                                    {
+
+                                        <span>Admin</span>
+                                    }
+                                    else if (item.usertype == 2)
+                                    {
+                                        <span>Manager</span>
+
+                                    }
+                                    else if (item.usertype == 3)
+                                    {
+                                        <span>User</span>
+
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.approval_type == 0)
+                                    {
+
+                                        <span>Not Selected</span>
+                                    }
+                                    else if (item.approval_type == 1)
+                                    {
+                                        <span>Level 0</span>
+                                       
+                                    }
+                                    else if (item.approval_type == 2)
+                                    {
+                                        <span>Level 1</span>
+                                        
+                                    }
+                                    else if (item.approval_type == 3)
+                                    {
+                                        <span>Level 2</span>
+                                    }
+                                    else if (item.approval_type == 4)
+                                    {
+                                        <span>Level 3</span>
+                                    }
+                                    
+                                </td>
+                            <td>@item.approvalby</td>
+                                <td>@item.billingaddress</td>
+                                <td>@item.shippingaddress1</td>
+                                <td>@item.limitamount</td>
+                                <td>@item.tat</td>
+                                <td>@item.regions</td>
+                            <td>@item.username</td>
+                            <td>@item.password</td>
+                            <td>
+                                <a href="../Supplier/user?Id=@item.Id" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-pencil me-1"></span>Edit
+                                </a>
+                                <button type="button" class="btn btn-outline-secondary waves-effect" onclick="delete_confirm_pop(@item.Id)">
+                                    <span class="tf-icons mdi mdi-delete me-1"></span>Delete
+                                </button>
+                            </td>
+                        </tr>
+
+                    }
+
+                }
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+@section Scripts1 {
+    <script>
+    function delete_confirm_pop(id) {
+       $.get('../user/Delete_CorpUser?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        alert(html);
+                       location.reload();
+                    }
+                    else {
+                         alert(html);
+                          location.reload();
+                    }
+
+
+            })
+    }
+    </script>
+}

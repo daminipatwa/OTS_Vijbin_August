@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Viewfrenchises";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View Frenchises</h3>
+
+    <div action="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>FirstN.</th>
+                <th>LastN.</th>
+                <th>Mail-ID</th>
+                <th>GST(%)</th>
+                <th>PhoneN.</th>
+                <th>RegNo.</th>
+                <th>Serv.interest</th>
+                <th>About.Features & Benefits</th>
+                <th>Oper.Location</th>
+                <th>Types of Supplies</th>
+               @*  <th>Action</th> *@
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.first_name</td>
+                    <td>@item.last_name</td>
+                    <td>@item.emailid</td>
+                    <td>@item.gst</td>
+                    <td>@item.phoneno</td>
+                    <td>@item.register</td>
+                    <td>@item.intrest</td>
+                    <td>@item.question</td>
+                    <td>@item.location</td>
+                    <td>@item.type</td>
+                   @*  <td><button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button> | <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td> *@
+                </tr>
+
+            }
+           
+        </tbody>
+
+    </table>
+    </div>
+
+</div>
+<hr>
+

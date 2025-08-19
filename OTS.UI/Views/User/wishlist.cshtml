@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewData["Title"] = "wishlist";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+    input[type="submit"] {
+        background-color: rgb(241, 129, 80);
+        border: none;
+        color: white;
+        padding: 8px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+            background: -moz-linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+            background: -webkit-linear-gradient(180deg, rgb(199, 79, 28) 0%, rgb(227, 107, 43) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F4520D", endColorstr="#0D3282", GradientType=1 );
+        }
+</style>
+<div class="card">
+    <div class="card-body">
+        <div class="mb-3"></div>
+        <h2>Wishlist</h2>
+        <div class="mb-3"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width:9%">Image</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Rate</th>
+                    <th>Stock Status</th>
+                    <th>Added Date</th>
+                    <th></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width: 43%;">
+                        </td>
+                        <td>@item.Description</td>
+                        <td>@item.Category</td>
+                        <td>@item.rate</td>
+                        <td>
+                            @if (Convert.ToInt32(@item.stock) > 0)
+                            {
+                                <lable class="label label-success">In Stock</lable>
+                            }
+                            else
+                            {
+                                <lable class="label label-danger">Out Of Stock</lable>
+                            }
+                        </td>
+                        <td>@item.createdate</td>
+                        <td>
+                            <input type="submit" value="Proceed to Cart" onclick="addtcart(@item.Id,@item.productid,@item.rate)">
+                        </td>
+
+                        <td><button class="btn btn-danger" onclick="delete_confirm_pop(@item.Id)"><i class="ri-delete-bin-line"></i></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-danger me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+                 $.get('../User/delete_wishlist?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+                })
+            }
+        })
+    }
+
+
+}
+
+@section Scripts1 {
+    <script>
+        function addtcart(id, productid, rate) {
+            $.get('../User/wishlist_tocart?id=' + id + '&productid=' + productid + '&qty=1&rate=' + rate + '', function (data) {
+
+                success_opup("Success", "Product Add In cart Successsfully");
+                window.location.reload();
+            })
+        }
+
+        function addtwishlist(id, productid) {
+            $.getJSON('../User/add_towishlist?id=' + id + '&productid=' + productid + '', function (data) {
+
+                success_opup("Success", "Product Add In Wishlist Successsfully")
+            })
+        }
+        function success_opup(title, text) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: "success",
+                customClass: {
+                    confirmButton: "btn btn-primary waves-effect waves-light"
+                },
+                buttonsStyling: !1
+            })
+        }
+    </script>
+}

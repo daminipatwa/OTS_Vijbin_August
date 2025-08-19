@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "AllOrder";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+
+<div class="row ">
+    <div class="mb-3"></div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>All Order</h3>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table table-border" style="width:1450px">
+                        <thead>
+                            <tr>
+                                <!-- <th>Image</th> -->
+                                <th>Order ID</th>
+                                <th>Product Category</th>
+                                <th>Approval 1</th>
+                                <th>Approval 2</th>
+                                <th>Order Status</th>
+                                <th>Rate</th>
+                                <th>Quantity</th>
+                                <th>Ordered Date</th>
+                                @* <th>Dispatch</th> *@
+                                @* <th>Action</th> *@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                Decimal Amount = Convert.ToDecimal(@item.total_amount);
+                                <tr>
+                                    <!-- <td><img src="./bags.jpg" alt="" id="Overviewimg"></td> -->
+                                    <td><a href="../User/ViewOrder?id=@item.id">@item.orderid</a></td>
+                                    <td>@item.category</td>
+                                    <td>@item.approvel_1</td>
+                                    <td>@item.approvel_2</td>
+                                    <td>@item.status_name</td>
+                                    <td>@Amount</td>
+                                    <td>@item.total_item</td>
+                                    <td>@item.orderdate</td>
+                                    @*<td></td>*@
+                                    @* <td> *@
+                                    @*     <button class="btn btn-danger" onclick=" delete_confirm_pop(@item.id)"><i class="ri-delete-bin-7-fill"></i></button> *@
+                                    @* </td> *@
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts1 {
+    <script>
+        function delete_confirm_pop(id) {
+            $.get('../Order/Delete_StationaryOrder?id=' + id + '', function (html) {
+
+                if (html == "Record Deleted Successfully") {
+                    alert(html);
+                    location.reload();
+                }
+                else {
+                    alert(html);
+                    location.reload();
+                }
+            })
+        }
+    </script>
+}

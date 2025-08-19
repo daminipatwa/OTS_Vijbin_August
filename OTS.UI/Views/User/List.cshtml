@@ -1,0 +1,107 @@
+﻿@model IEnumerable<OTS.Data.Models.VendorModel>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Vendor List</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-datatable table-responsive pt-0">
+                                <table class="datatables-basic table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email Id</th>
+                                            <th>Phone No</th>
+                                            <th>State</th>
+                                            <th>GST No</th>
+                                            <th>Location</th>
+                                            <th>Service Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            if (Model != null)
+                                            {
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@item.name</td>
+                                                        <td>@item.emailid</td>
+                                                        <td>@item.phoneno</td>
+                                                        <td>@item.state</td>
+                                                        <td>@item.gstno</td>
+                                                        <td>@item.location</td>
+                                                        <td>@item.servicecategory</td>
+                                                        <td>
+                                                            <a href="../User/Edit_user?Id=@item.Id" class="btn btn-outline-secondary waves-effect">
+                                                                <span class="tf-icons mdi mdi-pencil me-1"></span>Edit
+                                                            </a>
+                                                            <button type="button" class="btn btn-outline-secondary waves-effect" onclick="delete_confirm_pop(@item.Id)">
+                                                                <span class="tf-icons mdi mdi-delete me-1"></span>Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+@section Scripts {
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../user/Delete_vendor?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}

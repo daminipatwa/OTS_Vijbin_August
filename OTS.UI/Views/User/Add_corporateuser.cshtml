@@ -1,0 +1,292 @@
+﻿@model OTS.Data.Models.combomodel
+@{
+    ViewData["Title"] = "Add_corporateuser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Add Corporate User</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <form method="post" action="/User/Add_corporateuser">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="vendorid">
+                                        <option value="0">---Select Vendor---</option>
+                                        @foreach (var item in Model.VendorModels)
+                                        {
+                                            <option value="@item.Id">@item.name</option>
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Client Name</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="First Name" aria-describedby="floatingInputHelp" name="firstname">
+                                    <label for="floatingInput">First Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Last Name" aria-describedby="floatingInputHelp" name="lastname">
+                                    <label for="floatingInput">Last Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Contact No" aria-describedby="floatingInputHelp" name="contactno">
+                                    <label for="floatingInput">Contact No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="User Name" aria-describedby="floatingInputHelp" name="username">
+                                    <label for="floatingInput">User Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Password" aria-describedby="floatingInputHelp" name="password">
+                                    <label for="floatingInput">Password</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Email Id" aria-describedby="floatingInputHelp" name="emailid">
+                                    <label for="floatingInput">Email Id</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="usertype">
+                                        <option value="0">---Select Usertype---</option>
+                                        @foreach (var item in Model.UserTypeModels)
+                                        {
+                                            <option value="@item.id">@item.usertype</option>
+                                        }
+                                    </select>
+                                    <label for="floatingInput">User Type</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                             
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="department">
+                                        <option value="0">---Select Department---</option>
+                                        @foreach (var item in Model.departmentModels)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Department</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                               
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="approval_type">
+                                        <option value="0">---Select Approval Type---</option>
+                                        <option value="1">No Approval</option>
+                                        <option value="2">Single Approval</option>
+                                        <option value="3">Multilevel Approval</option>
+                                    </select>
+                                    <label for="floatingInput">Approval Type</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                               
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="approveby">
+                                        <option value="0">---Select Approved---</option>
+                                        @foreach (var item in Model.CorpUserModels)
+                                        {
+                                            <option value="@item.Id">@item.firstname @item.lastname</option>
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Approved By</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                               
+                                <div class="form-floating form-floating-outline">
+                                    <select class="select2 form-select" multiple>
+
+                                        @foreach (var item in Model.costCenters)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Cost Center</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                               
+                                <div class="form-floating form-floating-outline">
+                                 
+                                    <textarea class="form-control" name="billingaddress" placeholder="Enter here Billing Address"></textarea>
+                                    <label for="floatingInput">Billing Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                               
+                                <div class="form-floating form-floating-outline">
+
+                                    <textarea class="form-control" name="shippingaddress1" placeholder="Enter here Shipping Address"></textarea>
+                                    <label for="floatingInput">Shipping Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+
+                                    <textarea class="form-control" name="shippingaddress2" placeholder="Enter here Shipping Address"></textarea>
+                                    <label for="floatingInput">Optional Shipping Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                               
+                                <div class="form-floating form-floating-outline">
+
+                                    <input type="number" class="form-control" name="branchid" value="0" placeholder="Branch Code" />
+                                    <label for="floatingInput">Branch Code</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+
+                                    <input type="number" class="form-control" name="limitamount" value="0" placeholder="Limit Amount" />
+                                    <label for="floatingInput">Limit Amount</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                               
+                                <div class="form-floating form-floating-outline">
+
+                                    <input type="number" class="form-control" name="tat" value="0" placeholder="TAT" />
+                                    <label for="floatingInput">TAT</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+
+                                    <input type="number" class="form-control" name="regions" value="0" placeholder="Regions" />
+                                    <label for="floatingInput">Regions</label>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../Masters/Delete_branch?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}
+

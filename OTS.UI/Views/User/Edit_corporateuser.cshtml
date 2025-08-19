@@ -1,0 +1,284 @@
+﻿@model OTS.Data.Models.combomodel
+@{
+    ViewData["Title"] = "Edit_corporateuser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Add Corporate User</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <form method="post" action="/User/Add_corporateuser">
+                        <input type="hidden" value="@Model.CorpUser_Models.Id" name="id"/>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="vendorid">
+                                        <option value="0">---Select Vendor---</option>
+                                        @foreach (var item in Model.VendorModels)
+                                        {
+                                            if (Model.CorpUser_Models.vendorid == item.Id)
+                                            {
+                                                <option value="@item.Id" selected>@item.name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.name</option>
+                                            }
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Client Name</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="firstname" value="@Model.CorpUser_Models.firstname" />
+                                    <label for="floatingInput">First Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="lastname" value="@Model.CorpUser_Models.lastname" />
+                                    <label for="floatingInput">Last Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="contactno" value="@Model.CorpUser_Models.contactno" />
+                                    <label for="floatingInput">Contact No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="username" value="@Model.CorpUser_Models.username" />
+                                    <label for="floatingInput">User Name</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="password" value="@Model.CorpUser_Models.password" />
+                                    <label for="floatingInput">Password</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="emailid" value="@Model.CorpUser_Models.emailid" />
+                                    <label for="floatingInput">Email Id</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="usertype">
+                                        <option value="0">---Select Usertype---</option>
+                                        @foreach (var item in Model.UserTypeModels)
+                                        {
+                                            if (Model.CorpUser_Models.usertype == item.id)
+                                            {
+
+                                                <option value="@item.id" selected>@item.usertype</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.id">@item.usertype</option>
+                                            }
+                                        }
+                                    </select>
+                                    <label for="floatingInput">User Type</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="department">
+                                        <option value="0">---Select Department---</option>
+                                        @foreach (var item in Model.departmentModels)
+                                        {
+                                            if (Model.CorpUser_Models.department == item.Id)
+                                            {
+                                                <option value="@item.Id" selected>@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Department</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="approval_type">
+                                        <option value="0">---Select Approval Type---</option>
+                                        <option value="1">No Approval</option>
+                                        <option value="2">Single Approval</option>
+                                        <option value="3">Multilevel Approval</option>
+                                    </select>
+                                    <label for="floatingInput">Approval Type</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                               
+
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="approveby">
+                                        <option value="0">---Select Approved---</option>
+                                        @foreach (var item in Model.CorpUserModels)
+                                        {
+                                            if (Model.CorpUser_Models.approveby == item.Id)
+                                            {
+                                                <option value="@item.Id">@item.firstname @item.lastname</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id" selected>@item.firstname @item.lastname</option>
+                                            }
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Approved By</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="select2 form-select" multiple>
+
+                                        @foreach (var item in Model.costCenters)
+                                        {
+
+                                            <option value="@item.Id">@item.Name</option>
+
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Cost Center</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <textarea class="form-control" name="billingaddress">@Model.CorpUser_Models.billingaddress</textarea>
+                                    <label for="floatingInput">Billing Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <textarea class="form-control" name="shippingaddress">@Model.CorpUser_Models.shippingaddress1</textarea>
+                                    <label for="floatingInput">Shipping Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                               
+                                <div class="form-floating form-floating-outline">
+                                    <textarea class="form-control" name="shippingaddress2">@Model.CorpUser_Models.shippingaddress2</textarea>
+                                    <label for="floatingInput">Optional Shipping Address</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                               
+                                <div class="form-floating form-floating-outline">
+                                    <input type="number" class="form-control" name="branchid" value="@Model.CorpUser_Models.branchid" />
+                                    <label for="floatingInput">Branch Code</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="limitamount" value="@Model.CorpUser_Models.limitamount" />
+                                    <label for="floatingInput">Limit Amount</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="tat" value="@Model.CorpUser_Models.tat" />
+                                    <label for="floatingInput">TAT</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="regions" value="@Model.CorpUser_Models.regions" />
+                                    <label for="floatingInput">Regions</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

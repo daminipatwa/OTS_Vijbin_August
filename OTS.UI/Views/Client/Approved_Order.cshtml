@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewData["Title"] = "Approved_Order";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<div class="recent-orders-wrapper">
+    <h3>Approved Orders</h3>
+
+    <div class="date-wrapper">
+        <div class="inputs">
+
+
+            <div class="from">
+                <label for="from-date">From Date</label>
+                <input type="date" class="form-date" id="txtfromdate">
+            </div>
+            <div class="upto">
+                <label for="upto-date">Upto Date</label>
+                <input type="date" class="form-date" id="txttodate">
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type="button" onclick="getrecord();">Search</button>
+                <button class="btn btn-primary" type="button" onclick="export_pdf();">PDF</button>
+                <button class="btn btn-primary" type="button" onclick="export_excel();">Excel</button>
+            </div>
+
+
+        </div>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <!-- <th>Image</th> -->
+                <th>Order ID</th>
+                <th>Product Category</th>
+                <th>Approval 1</th>
+                @*  <th>Approval 2</th>
+                <th>Approval 3</th> *@
+                <th>Order Status</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Shipping Date</th>
+                <th>Dispatch</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <!-- <td><img src="./bags.jpg" alt="" id="Overviewimg"></td> -->
+                    <td>@item.orderid</td>
+                    <td>@item.category</td>
+                    <td>@item.status</td>
+                    @*  <td>Pending</td>
+                        <td>Pending</td> *@
+                    <td>Pending</td>
+                    <td>@item.amount </td>
+                    <td>@item.qty</td>
+                    <td>@item.orderdate</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="../client/vieworder?id=@item.id" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+<hr>
+<script>
+    function export_excel() {
+        $.get("../Client/ExportToExcel_ApprovedOrder?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ApprovedOrder.xlsx'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+
+    function getrecord() {
+        window.location.href = "../Client/Approved_Order?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "&o=" + $("#txtorder").val() + ""
+    }
+
+    function export_pdf() {
+        $.get("../Client/ExportPdf_ApprovedOrder?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/pdf'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ApprovedOrder.pdf'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+</script>

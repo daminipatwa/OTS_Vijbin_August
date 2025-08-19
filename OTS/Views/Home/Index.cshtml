@@ -1,0 +1,332 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .avatar {
+        position: relative;
+        width: 4.5rem !important;
+        height: 4.5rem !important;
+        cursor: pointer;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="card bg-primary text-white mb-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <div class="avatar me-3">
+                            <div class="avatar-initial bg-label-light rounded">
+                                <i class="mdi mdi-cart-check mdi-36px" style="color: #0c0c8c;">
+                                </i>
+                            </div>
+                        </div>
+                        <div class="card-info text-white mb-3">
+                            <div class="d-flex align-items-center">
+                                <h4 class="mb-0 text-white">Total Order</h4>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="card bg-secondary text-white mb-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <div class="avatar me-3">
+                            <div class="avatar-initial bg-label-light rounded">
+                                <i class="mdi mdi-cart-variant mdi-36px" style="color: #0c0c8c;">
+                                </i>
+                            </div>
+                        </div>
+                        <div class="card-info text-white mb-3">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mb-0 text-white">Total Uploaded Product</h5>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="card bg-warning text-white mb-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <div class="avatar me-3">
+                            <div class="avatar-initial bg-label-light rounded">
+                                <i class="mdi mdi-chart-box-outline mdi-36px" style="color: #0c0c8c;">
+                                </i>
+                            </div>
+                        </div>
+                        <div class="card-info text-white mb-3">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mb-0 text-white">MIS Report</h5>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <h5 class="card-header">Add Vendor</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email Id</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone No</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>GST No</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Service category</label>
+                                <select class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Region</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success btn-fab demo waves-effect waves-light">
+                                <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary waves-effect">
+                                <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Activity <small>Today</small></h4>
+                            <div id="deliveryExceptionsChart"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-lg-12 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                                <div class="avatar me-3">
+                                                    <div class="avatar-initial bg-label-primary rounded">
+                                                        <i class="mdi mdi-cart text-danger mdi-24px"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div class="d-flex align-items-center">
+                                                        <h4 class="mb-0">8,458</h4>
+                                                       
+                                                        
+                                                    </div>
+                                                    <small>Pending Order</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-12 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                                <div class="avatar me-3">
+                                                    <div class="avatar-initial bg-label-primary rounded">
+                                                        <i class="mdi mdi-account text-danger mdi-24px"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div class="d-flex align-items-center">
+                                                        <h4 class="mb-0">8,458</h4>
+                                                       
+                                                       
+                                                    </div>
+                                                    <small>New Customers</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                                <div class="avatar me-3">
+                                                    <div class="avatar-initial bg-label-primary rounded">
+                                                        <i class="mdi mdi-account-group text-danger mdi-24px"></i>
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                                <div class="card-info">
+                                                    <div class="d-flex align-items-center">
+                                                        <h4 class="mb-0">8,458</h4>
+                                                        
+                                                       
+                                                    </div>
+                                                    <small>Corporate View</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3 class="mb-1">24 %</h3>
+                                    <p class="mb-0">Customer Growth</p>
+                                </div>
+                                <div class="avatar me-sm-4">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="mdi mdi-arrow-up text-heading mdi-20px"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none me-4">
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                                <div>
+                                    <h3 class="mb-1">165</h3>
+                                    <p class="mb-0">Page View</p>
+                                </div>
+                                <div class="avatar  me-lg-4">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="mdi mdi-arrow-up text-heading mdi-20px"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr class="d-none d-sm-block d-lg-none">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Recent Order</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-datatable table-responsive pt-0">
+                                <table class="datatables-basic table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Id</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>MRP</th>
+                                            <th>payment Mode</th>
+                                            <th>Shipping Time</th>
+                                            <th>Order Status</th>
+                                            <th>Approved By</th>
+                                            <th>Level 1</th>
+                                            <th>Level 2</th>
+                                            <th>Dispatch</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <h5 class="card-header">Recent Order</h5>
+
+            <div class="card">
+               
+            </div>
+        </div>
+    </div>
+</div>

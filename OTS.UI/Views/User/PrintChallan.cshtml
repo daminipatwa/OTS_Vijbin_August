@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+}
+@Html.Raw(TempData["html"].ToString())
+<script>
+    window.onload = function () {
+        window.print();
+    }
+</script>

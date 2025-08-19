@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "EditOrder";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+<div class="row ">
+    <div class="mb-3"></div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>Edit Order</h3>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">HSN Code </th>
+                                 <th scope="col">Rate</th>
+                                <th scope="col">GST(%)</th>
+                                <th scope="col">Requested Quantity</th>
+                               @*  <th scope="col">Quantity</th> *@
+                               
+                               @*  <th scope="col">Action</th> *@
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                decimal total = (Convert.ToDecimal(item.rate) * Convert.ToDecimal(item.qty)) + item.gst_amt;
+                                <tr>
+                                    <th scope="row" style="width:10% !important"><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:40% !important"></th>
+                                    <td>@item.Description</td>
+                                    <td>@item.hsncode</td>
+                                    <td>@item.rate</td>
+                                    <td>@item.gst_per</td>
+                                    @if (Convert.ToInt32(item.updated_qty) > 0)
+                                    {
+                                        <td>@item.updated_qty</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.qty</td>
+                                    }
+                                    <td>@total</td>
+                                    @* <td>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" aria-label="Quantity" id="txtqty_@item.id" onchange="edit_qty(@item.id,@item.rate)" />
+                                        </div>
+                                    </td> *@
+                                    
+                                    @* <td><button class="btn btn-danger"><i class="fas fa-trash"></i></button></td> *@
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function edit_qty(id, rate) {
+            $.get('../Order/update_user_order?id=' + id + '&qty=' + $("#txtqty_" + id + "").val() + '&rate=' + rate + '', function (data) {
+                if (data == "Order Details Update Successfully") {
+                    //success_opup("Success", data);
+                    alert("Success");
+                    window.location.reload();
+                }
+                else {
+                    // error_opup("Error", data);
+                    alert("Error");
+                }
+            })
+        }
+
+        // function addtwishlist(id, productid) {
+        //     $.getJSON('../User/add_towishlist?id=' + id + '&productid=' + productid + '', function (data) {
+
+        //         success_opup("Success", "Product Add In Wishlist Successsfully")
+        //     })
+        // }
+        // function success_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "success",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+        // function error_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "error",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+    </script>
+}

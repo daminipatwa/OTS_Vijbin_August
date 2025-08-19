@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-section, .footer-section {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+            .header-section table td {
+                vertical-align: top;
+            }
+
+        .table-responsive {
+            border: 1px solid #000;
+            margin-bottom: 15px;
+        }
+
+        .footer-section {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+            .footer-section > P {
+                float: left;
+            }
+
+        .logo {
+            width: 100px;
+        }
+
+        .summary-table td {
+            text-align: right;
+        }
+
+        .total-wrapper {
+            float: right;
+        }
+
+        .bank-details {
+            float: right;
+            font-size: 11px;
+            /* border: 1px solid black; */
+            width: 100%;
+        }
+
+        .left-wrapper {
+            border: 1px solid black;
+            width: 80%;
+            padding: 10px;
+        }
+
+        .right-wrapper {
+            border: 1px solid black;
+            width: 80%;
+            padding: 10px;
+        }
+
+        .footer {
+            display: inline-flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Header Section -->
+        <div class="header-section">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="w-50">
+                            <img src="vijbin-logo.png" alt="Logo" class="logo mb-2">
+                            <p>
+                                <strong>VIJBIN BUSINESS SOLUTIONS PRIVATE LIMITED</strong><br>
+                                5th Floor, Flat No. B-502, <br>Sunshine Hills Phase - II,<br>
+                                SR. No. 15/2, Pisoli, <br>Pune - 411060<br>
+                                <strong>GSTIN/UIN:</strong> 27AAGCV6686A1Z3<br>
+                                <strong>State:</strong> Maharashtra, Code: 27<br>
+                                <strong>E-Mail:</strong> info@vijbin.com
+                            </p>
+                        </td>
+                        <td class="w-50 text-end">
+                            <!-- <h5><strong>TAX INVOICE</strong></h5> -->
+                            <p>
+                                <strong>Invoice No.:</strong> VBS123/2425<br>
+                                <strong>Date:</strong> 3-Dec-24<br>
+                                <strong>Mode/Terms of Payment:</strong> 30 Days<br>
+                                <strong>Reference No. & Date:</strong> REF123/987 dt. 3-Dec-24
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Consignee (Ship to):</h6>
+                    <p>
+                        <strong>INDORAILBUS TRAVEL PRIVATE LIMITED</strong><br>
+                        SHOP NO: 18A/3, opp to our lady of,<br>
+                        assumption church, situated at Vancio,<br>
+                        Vadda, Guirim,Mapusa. 403507<br>
+                        State Name : Goa, Code: 27
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Buyer (Bill to):</h6>
+                    <p>
+                        <strong>INDORAILBUS TRAVEL PRIVATE LIMITED</strong><br>
+                        Ground Floor, Plot No A 5 6 AND 7, AMCO,<br>
+                        Tower,SECTOR -9 NOIDA ,Gautambuddha,<br>
+                        Nagar,Uttar Pradesh, 201301<br>
+                        GSTIN/UIN: 09AAFCI1526F1ZS <br>
+                        State Name: Uttar Pradesh, Code : 09 <br>
+                        Power of Supply: Uttar Pradesh <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Description of Goods</th>
+                        <th>HSN/SAC</th>
+                        <th>GST Rate</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>per</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Room Freshener</td>
+                        <td>33074900</td>
+                        <td>18%</td>
+                        <td>6.0000 PCS</td>
+                        <td>125.00</td>
+                        <td>PCS</td>
+                        <td>750.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>COLIN SPRAY 500ML</td>
+                        <td>34022090</td>
+                        <td>18%</td>
+                        <td>4.0000 PCS</td>
+                        <td>85.00</td>
+                        <td>PCS</td>
+                        <td>340.00</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PAPER GLASS 200ml</td>
+                        <td>48236900</td>
+                        <td>18%</td>
+                        <td>1,000.0000 PCS</td>
+                        <td>0.75</td>
+                        <td>PCS</td>
+                        <td>750.00</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>GOOD NIGHT REFILL</td>
+                        <td>3808</td>
+                        <td>18%</td>
+                        <td>3.0000 PCS</td>
+                        <td>75.00</td>
+                        <td>PCS</td>
+                        <td>225.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="table-responsive">
+            <table class="table table-bordered summary-table">
+                <tbody>
+                    <tr>
+                        <td><strong>Total:</strong></td>
+                        <td>₹7,350.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p><strong>Amount (in words):</strong> INR Six Thousand Nine Hundred Seventeen Only</p>
+            <hr>
+            <table class="total-wrapper">
+                <tr>
+                    <th></th>
+                    <th>Taxable Value</th>
+                    <th colspan="2">Name</th>
+                    <th>Total Tax Amount</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>5,396.50</td>
+                    <td>18%</td>
+                    <td>971.37</td>
+                    <td>971.37</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>75.00</td>
+                    <td>5%</td>
+                    <td>3.75</td>
+                    <td>3.75</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>420.00</td>
+                    <td>12%</td>
+                    <td>50.40</td>
+                    <td>50.40</td>
+                </tr>
+                <tr>
+                    <th>Total : </th>
+                    <th>5,891.50</th>
+                    <th></th>
+                    <th>1,025.52</th>
+                    <th>1,025.52</th>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p>Tax Amount (in words) : INR One Thousand Twenty Five and Fifty Two paise only</p><br>
+            <br>
+            <br>
+            <br>
+
+            <div class="bank-details">
+                <p>
+                    Company's Bank Details <br>
+                    A/c Holder's Name : <strong>VIIJBIN BUSINESS SOLUTIONS PRIVATE LIMITED</strong> <br>
+                    Bank Name : <strong>HDFC-0563 (New) </strong><br>
+                    A/c No. : <strong>50200037450563 </strong><br>
+                    Branch & IFS Code : <strong>Laxmi Arcade,BT Kawade Road, Ghorpadi Pune & HDFC0003708 </strong>
+                </p>
+            </div>
+            <br>
+            <div class="footer">
+                <div class="left-wrapper">
+                    <p>
+                        Declaration <br>
+                        We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.
+                    </p>
+                </div>
+                <div class="right-wrapper">
+                    <p><strong>for VIJBIN BUSINESS SOLUTIONS PRIIVATE LIMITED</strong></p><br>
+                    <p>Authorised Signatory</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

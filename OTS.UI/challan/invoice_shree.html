@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Invoice - Shree Hari Enterprises</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="invoice-container">
+        <div class="head-main">
+            <div class="logo">
+                <img src="./shri-hari-logo.png" alt="" id="logo-shri">
+            </div>
+        <div class="header">
+            <h3>GST Invoice</h3>
+            <h1>Shree Hari Enterprises</h1>
+            <h5>Sr.No.22, Plot No.13814, Flat No14, D Wing, Padmavati Building, Balaji Nagar, Katraj, Pune - 411043 <br> Email: shreeharienterprises95@gmail.com | Mob: 9604540004</h5>
+            <h5>GST TIN : 27ALQPN9429B1ZQ</h5>
+        </div>
+    </div>
+
+        <div class="invoice-details">
+            <table class="details-table">
+                <tr>
+                    <th>To.</th>
+                    <td>
+                        {buyername}
+                       
+                    </td>
+                    <th>Invoice No.</th>
+                    <td>{invoiceno}</td>
+                </tr>
+                <tr>
+                    <th>Tel.,</th>
+                    <td></td>
+                    <th>Invoice Date</th>
+                    <td>{date}</td>
+                </tr>
+                <tr>
+                    <th>State Code :</th>
+                    <td></td>
+                    <th>Ship to: </th>
+                    <td> {addressline1}</td>
+                </tr>
+                <tr>
+                    <th>GSTIN :</th>
+                    <td></td>
+                    <th>Vender Code</th>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="item-details">
+            <!-- <h2>Details of Goods</h2> -->
+            <table class="items-table">
+                <tr>
+                    <th>S No</th>
+                    <!--<th>Challan</th>-->
+                    <th>Description of Goods</th>
+                    <th>HSN Code</th>
+                    <th>GST %</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Rate</th>
+
+                    <th>Amount (Rs.)</th>
+                </tr>
+                <!--<tr>
+                    <td>1</td>
+                    <td>-</td>
+                    <td>BROWN ENVELOPE 10X12 SIZE</td>
+                    <td>4817</td>
+                    <td>1.00</td>
+                    <td>NOS</td>
+                    <td>1.00</td>
+                    <td>18%</td>
+                    <td>1.00</td>
+                </tr>-->
+                {item}
+            </table>
+        </div>
+
+        <div class="total">
+            <p><strong>Total :</strong> {total}</p>
+            <p><strong>Discount :</strong> 0.00</p>
+            <p><strong>P & F Charges :</strong> 0.00</p>
+            <p><strong>Total SGST :</strong> {sgst}</p>
+            <p><strong>Total CGST :</strong> {cgst}</p>
+            <p><strong>Total IGST :</strong> 0.00</p>
+            <p><strong>Round Off(+/-) :</strong> 0.00</p>
+            <p><strong>Invoice Total :</strong> {grandtotal}</p>
+        </div>
+
+        <div class="item-details">
+            <!-- <h2>Details of Goods</h2> -->
+            <table class="items-table">
+                <tr>
+                    <th>GST %</th>
+                    <th>Taxable Amt</th>
+                    <th>SGST Amt.</th>
+                    <th>CGST Amt.</th>
+                    <th>IGST Amt.</th>
+                    <th>Total Amt.</th>
+                </tr>
+                <tr>
+                    <td>0%</td>
+                    <td>0.00</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>5%</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>12%</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>18%</td>
+                    <td>1.00</td>
+                    <td>0.09</td>
+                    <td>0.09</td>
+                    <td></td>
+                    <td>1.18</td>
+                </tr>
+                <tr>
+                    <td>28%</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>0.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="bank-details">
+            <h2>Bank Details</h2>
+            <table class="details-table">
+                <tr>
+                    <th>Bank Name</th>
+                    <td>IDBI BANK</td>
+                </tr>
+                <tr>
+                    <th>A/C No.</th>
+                    <td>1302102000011033</td>
+                </tr>
+                <tr>
+                    <th>IFSC Code</th>
+                    <td>IBKL0001302</td>
+                </tr>
+                <tr>
+                    <th>Branch</th>
+                    <td>BIBWEDI MAIN ROAD, PUNE - 411037</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <h4>Terms & Conditions</h4>
+                <p>18% interest will be charged on the invoice amount if not paid within 30 days from <br>the date of acknowledgment.</p>
+                <p>Subject to Pune Jurisdiction</p> 
+            </div>
+            <div class="footer-right">
+                <p>For Shree Hari Enterprises</p>
+                <p>Authorised Signatory</p>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

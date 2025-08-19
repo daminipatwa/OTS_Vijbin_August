@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "MisReportCostCenterWise";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+    <!-- ----------------------Recent Orders Start------------------------------>
+
+    <div class="recent-orders-wrapper">
+        <h3>MIS Report Cost Center wise</h3>
+        <div class="date-wrapper">
+            <div class="inputs">
+                <div class="client">
+                    <label for="CostCenter-Name">Cost Center Name</label>
+                    <input type="text" class="form-date">
+                </div>
+
+                <div class="from">
+                    <label for="from-date">From Date</label>
+                    <input type="date" class="form-date">
+                </div>
+                <div class="upto">
+                    <label for="upto-date">Upto Date</label>
+                    <input type="date" class="form-date">
+                </div>
+
+
+                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit">PDF</button>
+                <button class="btn btn-primary" type="submit">Excel</button>
+
+
+
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Cost Center Name</th>
+                    <th>Product Name</th>
+                    <th>Product Category</th>
+                    <th>Payment</th>
+                    <th>Rate</th>
+                    <th>Quantity</th>
+                    <th>Region</th>
+                    <th>Order Placed Time</th>
+                    <th>Dispatch</th>
+
+                </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+
+        </table>
+
+
+    </div>
+    <hr>
+
+    <!-- ----------------------Recent Orders End------------------------------>
+
+
+
+
+

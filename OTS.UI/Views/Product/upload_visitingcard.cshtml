@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "upload_visitingcard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Upload Visiting card</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <form method="post" action="#" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Client Name</label>
+                                    <select class="form-control" name="clientid">
+                                        <option value="0">---Select Client---</option>
+                                        @foreach (var item in Model.Client_Model)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" name="desc"/>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <input type="file" name="file" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Upload Product
+                                </button>
+                                @*  <button type="button" class="btn btn-outline-secondary waves-effect">
+                                <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button> *@
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Visiting card</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                   
+                        <div class="row">
+                            @{
+                                foreach (var item in Model.product_Model)
+                                {
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="card p-2 h-100 shadow-none border">
+                                            <div class="rounded-2 text-center mb-3">
+                                                <img src="~/Uploads/@item.ImageUrl" class="img-fluid" />
+                                            </div>
+                                            <div class="card-body p-3 pt-2">
+                                                <p class="mt-2">@item.Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                           
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+@section Scripts {
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../Masters/Delete_branch?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}

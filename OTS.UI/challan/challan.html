@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Note</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-section, .footer-section {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+            .header-section table td {
+                vertical-align: top;
+            }
+
+        .table-responsive {
+            border: 1px solid #000;
+            margin-bottom: 15px;
+        }
+
+        .footer-section {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .footer-section > h6 {
+            float: left;
+        }
+
+        .footer-section > span {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h5><strong>DELIVERY NOTE</strong></h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="w-50">
+                            <img src="vijbin-logo.png" alt="Logo" class="logo mb-2">
+                            <p>
+                                <strong>VIJBIN BUSINESS SOLUTIONS PRIVATE LIMITED</strong><br>
+                                5th Floor, Flat No. B-502, Sunshine Hills Phase - II,<br>
+                                SR. No. 15/2, Pisoli, Pune - 411060<br>
+                                <strong>State:</strong> Maharashtra, Code: 27<br>
+                                <strong>E-Mail:</strong> info@vijbin.com
+                            </p>
+                        </td>
+                        <td class="w-50 text-end">
+                            <p>
+                                <strong>Delivery Note No.:</strong> D-435-2425<br>
+                                <strong>Dated:</strong> 18-Nov-24<br>
+                                <strong>Mode/Terms of Payment:</strong> 30 Days<br>
+                                <strong>Reference No. & Date:</strong> D-435-2425 dt. 18-Nov-24
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Consignee (Ship to):</h6>
+                    <p>
+                        <strong>STANTEC RESOURCENET (l) PVT.LTD.</strong><br>
+                        4th & 5th Floor, Bajaj, Brandview, Wakadewadi,<br>
+                        Village Bhamburda, Pune, 411003<br>
+                        <strong>GSTIN/UIN:</strong> 27AAFCM4225P1Z3<br>
+                        <strong>State Name:</strong> Maharashtra, Code: 27
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Buyer (Bill to):</h6>
+                    <p>
+                        <strong>STANTEC RESOURCENET (l) PVT.LTD.</strong><br>
+                        4th & 5th Floor, Bajaj, Brandview, Wakadewadi,<br>
+                        Village Bhamburda, Pune, 411003<br>
+                        <strong>GSTIN/UIN:</strong> 27AAFCM4225P1Z3<br>
+                        <strong>State:</strong> Maharashtra, Code: 27 <br>
+                        <strong>Place of supply:</strong> Maharashtra
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Description of Goods</th>
+                        <th>HSN/SAC</th>
+                        <th>Rate</th>
+                        <th>GST %</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {item}
+                    <!--<tr>
+                        <td>1</td>
+                        <td>Highlighter 18%</td>
+                        <td>96082000</td>
+                        <td>18%</td>
+                        <td>10 NOS</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sharpener 18%</td>
+                        <td>82141010</td>
+                        <td>18%</td>
+                        <td>20 NOS</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Dura Cell AA</td>
+                        <td>85068090</td>
+                        <td>18%</td>
+                        <td>50.0000 PCS</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>File Separator Green</td>
+                        <td>48201010</td>
+                        <td>18%</td>
+                        <td>2 NOS</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>File Separator Pink</td>
+                        <td>48201010</td>
+                        <td>18%</td>
+                        <td>2 NOS</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>File Separator Yellow</td>
+                        <td>48201010</td>
+                        <td>18%</td>
+                        <td>2 NOS</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>A4 Paper 75GSM</td>
+                        <td>48025610</td>
+                        <td>12%</td>
+                        <td>50 PKT</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Battery</td>
+                        <td>85069000</td>
+                        <td>28%</td>
+                        <td>50.0000 PCS</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Casio Cartridge<br>(Ez Label Printer - 9mm)</td>
+                        <td>84439951</td>
+                        <td>18%</td>
+                        <td>10.0000 PCS</td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <h6><strong>Amount (in words):</strong> {totalAmountWords}</h6>
+            <p><strong>Total:</strong> ₹{totalAmount}</p>
+            <span>For Vijbin Business Solutions Private Limited</span> <br>
+            <hr>
+            <h6>Received in Good Condition</h6>
+            <span><strong>Authorized Signature</strong></span> <br> <br>
+            <!-- <span><strong>Authorized Signature</strong></span> -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

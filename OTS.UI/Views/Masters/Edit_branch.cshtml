@@ -1,0 +1,50 @@
+﻿@model OTS.Data.Models.BranchModel
+@{
+    ViewData["Title"] = "Edit_branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+
+    <div class="row">
+
+        <!-- Multi  -->
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Branch Master</h5>
+                <div class="card-body">
+                    <form method="post" action="/Masters/Branch">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" value="@Model.Name" placeholder="Branch Name" aria-describedby="floatingInputHelp" name="name">
+                                    <label for="floatingInput">Branch Name</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5%;">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Update
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Multi  -->
+    </div>
+    
+</div>
+

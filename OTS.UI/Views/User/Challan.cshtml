@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Challan";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+<div class="row ">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>Approve Challan</h3>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>App.Level 1</th>
+                                @* <th>App.Level 2</th>
+                                <th>App.Level 3</th> *@
+                                @* <th>Payment</th> *@
+                                <th>Rate</th>
+                                <th>Quantity</th>
+                                <th>Order Placed Time</th>
+                                <th>Challan Status</th>
+                                <th>Action</th>
+                                <!-- <th>Level 2</th>
+                                <th>Dispatch</th>    -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.orderid</td>
+                                        <td>@item.approvstatus</td>
+                                        @*<td></td>*@
+                                        <td>@item.amount</td>
+                                        <td>@item.qty</td>
+                                        <td>@item.orderdate</td>
+                                        <td>
+                                            @if (item.is_challan == 0)
+                                            {
+                                                <span>Approved</span>
+                                            }
+                                            else if (item.is_challan == 1)
+                                            {
+                                                <span>Reject</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Pending</span>
+
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.is_challan == 0)
+                                            {
+
+                    // <a class="btn btn-success" href="../User/PrintChallan?id=@item.id" target="blank_"><i class="ri-download-2-line"></i></a>
+                                                <span>|</span> <a class="btn btn-warning" href="../User/ViewChallan?id=@item.id"><i class="ri-eye-fill"></i></a>
+                                            }
+                                            else if (item.is_challan == 1)
+                                            {
+
+                                            // <a class="btn btn-success" href="../User/PrintChallan?id=@item.id" target="blank_"><i class="ri-download-2-line"></i></a>
+                                                <span>|</span> <a class="btn btn-warning" href="../User/ViewChallan?id=@item.id"><i class="ri-eye-fill"></i></a>
+                                            }
+                                            else
+                                            {
+                                            //<a class="btn btn-success" href="../User/PrintChallan?id=@item.id" target="blank_"><i class="ri-download-2-line"></i></a> <span>|</span>
+                                                <button class="btn btn-primary" onclick="update_challan(@item.id);"><i class="ri-check-line"></i></button>
+
+                                                <span>|</span> <a class="btn btn-warning" href="../User/ViewChallan?id=@item.id"><i class="ri-eye-fill"></i></a>
+
+                                                <span>|</span> <button class="btn btn-danger" onclick="update_challan(@item.id);"><i class="ri-delete-bin-line"></i></button>
+                                            }
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts1 {
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        $(document).ready(function () {
+            $("#hdnid").val(getUrlVars()["id"]);
+        });
+
+        function reject_challan(id, staus) {
+            $.get('../User/single_reject_challan?id=' + id + '&status=' + staus + '&remark=' + $("#remark_" + id + "").val() + '', function (data) {
+                if (staus == 1) {
+                    success_opup("Success", "Item Approve Successfully")
+                }
+                else {
+                    success_opup("Success", "Item Reject Successfully")
+                }
+            })
+        }
+
+        function update_challan(id) {
+            $.getJSON('../User/get_challan_count?id=' + id + '', function (data) {
+                if (data.reject_count == data.total_count) {
+                    $.get('../User/All_challan_update?id=' + id + '&status=1&remark=test', function (data) {
+
+                        success_opup("Success", "Challan Reject Successfully")
+                    })
+                }
+                else if (data.sucess_count == data.total_count) {
+                    $.get('../User/All_challan_update?id=' + id + '&status=0&remark=test', function (data) {
+
+                        success_opup("Success", "Challan Approve Successfully")
+
+                    })
+                }
+                else {
+                    $.get('../User/All_challan_update?id=' + id + '&status=2&remark=test', function (data) {
+
+                        success_opup("Success", "Challan Update Successfully")
+
+                    })
+                }
+            })
+        }
+    </script>
+}

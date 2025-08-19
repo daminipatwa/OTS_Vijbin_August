@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewData["Title"] = "FeedBack";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', 'sans-serif';
+        font-size: 17px;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: whitesmoke;
+    }
+
+    .header {
+        width: 100%;
+        background-color: white;
+        border-radius: 3px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 5px;
+    }
+
+    .bell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 3px;
+        margin: 5px;
+    }
+
+    .user-wrapper {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .user-wrapper img {
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+    #search-form {
+        background-color: #ffffff;
+        border-radius: 2px;
+        padding: 5px;
+        width: 50%;
+        margin-left: 50%;
+    }
+
+    .form-control me-2 {
+        outline: none;
+    }
+
+    .search-here {
+        width: 50%;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        margin-left: 30px;
+    }
+
+    .icons-wrapper {
+        display: ruby;
+    }
+
+    .nav-link {
+        color: black;
+    }
+    /* .Proceedtocart-wrapper{
+        width: 100%;
+        padding: 10px 20px 10px 20px;
+    } */
+    .details-wrapper {
+        background-color: white;
+        margin: 10px;
+        padding: 10px 20px 10px 20px;
+    }
+
+    .address {
+        width: 40%;
+        padding: 10px 30px 10px 30px;
+        display: inline-flex;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        margin-left: 30px;
+    }
+
+    .dropdown-item {
+        background-color: cornsilk;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .rating {
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 150px;
+    }
+
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    .rating input[type="radio"] {
+        display: none;
+    }
+
+    .rating label {
+        cursor: pointer;
+    }
+
+        .rating label:before {
+            content: '\2605';
+            font-size: 24px;
+            color: #ccc;
+        }
+
+    .rating input[type="radio"]:checked + label:before {
+        color: #f39c12;
+    }
+</style>
+<div class="container">
+    <h1>Feedback</h1>
+    <h6>Please complete the following form and help us imporve our customer experience.</h6>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="rating">Rating:</label>
+            <div class="rating">
+                <input type="radio" id="star5" name="rate" value="5">
+                <label for="star5">Satisfied</label>
+                <input type="radio" id="star4" name="rate" value="4">
+                <label for="star4">Very Satified</label>
+                <input type="radio" id="star3" name="rate" value="3">
+                <label for="star3">Netural</label>
+                <input type="radio" id="star2" name="rate" value="2">
+                <label for="star2">unsatisfied</label>
+                <input type="radio" id="star1" name="rate" value="1">
+                <label for="star1">Very Unsatisfied</label>
+            </div>
+            <!-- <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required> -->
+
+            <label for="message">Tell us how we can improve??:</label>
+            <textarea id="message" name="msg" required></textarea>
+
+            <input type="submit" value="Submit">
+    </form>
+</div>
+

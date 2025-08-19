@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewData["Title"] = "product_list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-8">
+
+            <div class="card mb-4">
+                <div class="card-header d-flex flex-wrap justify-content-between gap-3">
+                    <div class="card-title mb-0 me-1">
+                        <h5 class="mb-1">Products</h5>
+
+                    </div>
+                    @* <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
+                        <select id="select2_course_select" class="select2 form-select" data-placeholder="All Category">
+                            <option value="">All Category</option>
+                            <option value="all courses">Visiting Card</option>
+                            <option value="stationary">Stationary</option>
+                            <option value="printing">Printing</option>
+                        </select> *@
+
+                        @*    <label class="switch">
+                        <input type="checkbox" class="switch-input">
+                        <span class="switch-toggle-slider">
+                        <span class="switch-on"></span>
+                        <span class="switch-off"></span>
+                        </span>
+                        <span class="switch-label text-nowrap mb-0">Hide completed</span>
+                        </label> *@
+                    </div>
+               
+                <div class="card-body">
+                    <div class="row gy-4 mb-4">
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="card p-2 h-100 shadow-none border">
+                                        <div class="rounded-2 text-center mb-3">
+                                            <a href="#"><img src="~/uploads/@item.ImageUrl" class="img-fluid" /></a>
+                                        </div>
+                                        <div class="card-body p-3 pt-2">
+                                            <p class="mt-2">@item.Description</p>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mt-2">@item.Rate Rs.</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="badge bg-success">In Stock</span>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-warning btn-sm col-md-12" onclick="add_tocart('@item.Description',@item.Rate,'@item.ImageUrl',@item.id)"><i class="mdi mdi-cart-outline"></i> Add to cart</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                        @*  <div class="col-sm-6 col-lg-4">
+                            <div class="card p-2 h-100 shadow-none border">
+                                <div class="rounded-2 text-center mb-3">
+                                <a href="#"><img src="~/assets/img/statinary/inkpad.png" class="img-fluid" /></a>
+                                </div>
+                                <div class="card-body p-3 pt-2">
+                                    <p class="mt-2">Ink Pad</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mt-2">100 Rs.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="badge bg-success">In Stock</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm col-md-12" onclick="add_tocart('Ink Pad',100,'../assets/img/statinary/inkpad.png')"><i class="mdi mdi-cart-outline"></i> Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card p-2 h-100 shadow-none border">
+                                <div class="rounded-2 text-center mb-3">
+                                <a href="#"><img src="~/assets/img/statinary/notebook.png" class="img-fluid" /></a>
+                                </div>
+                                <div class="card-body p-3 pt-2">
+                                    <p class="mt-2">Note Book</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mt-2">100 Rs.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="badge bg-success">In Stock</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm col-md-12" onclick="add_tocart('Note Book',100,'../assets/img/statinary/notebook.png')"><i class="mdi mdi-cart-outline"></i> Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card p-2 h-100 shadow-none border">
+                                <div class="rounded-2 text-center mb-3">
+                                <a href="#"><img src="~/assets/img/statinary/pen.png" class="img-fluid" /></a>
+                                </div>
+                                <div class="card-body p-3 pt-2">
+                                    <p class="mt-2">Pen</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mt-2">100 Rs.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="badge bg-success">In Stock</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm col-md-12" onclick="add_tocart('Pen',100,'../assets/img/statinary/pen.png')"><i class="mdi mdi-cart-outline"></i> Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card p-2 h-100 shadow-none border">
+                                <div class="rounded-2 text-center mb-3">
+                                <a href="#"><img src="~/assets/img/statinary/Print_paper.png" class="img-fluid" /></a>
+                                </div>
+                                <div class="card-body p-3 pt-2">
+                                    <p class="mt-2">A4 Size Paper</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mt-2">100 Rs.</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="badge bg-success">In Stock</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning btn-sm col-md-12" onclick="add_tocart('A4 Size Paper',100,'../assets/img/statinary/Print_paper.png')"><i class="mdi mdi-cart-outline"></i> Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card p-2 h-100 shadow-none border">
+                                <div class="rounded-2 text-center mb-3">
+                                    <a href="../Product/visitingcard"><img src="~/assets/img/visiting_card/carddetails_6.png" class="img-fluid" /></a>
+                                </div>
+                                <div class="card-body p-3 pt-2">
+                                    <p class="mt-2">Visiting Card 6</p>
+                                </div>
+                            </div>
+                        </div> *@
+                    </div>
+                    <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item prev">
+                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon mdi mdi-chevron-left"></i></a>
+                            </li>
+                            @{
+                                var c = Model[0].totalrows/10;
+                                for (var j = 0; j <=10;j++)
+                                {
+                                    var k = j * 10;
+                                    var p = j + 1;
+                                    if (j == 0)
+                                    {
+                                        <li class="page-item active">
+                                            <a class="page-link" href="../Product/product_list?id=1&row=@k">@p</a>
+                                        </li>
+                                    }
+                                    else{
+                                    <li class="page-item">
+                                        <a class="page-link" href="../Product/product_list?id=1&row=@k">@p</a>
+                                    </li>
+                                    }
+                                    
+                                }
+                            }
+                   
+                    
+                    
+                    <li class="page-item next">
+                    <a class="page-link" href="javascript:void(0);"><i class="tf-icon mdi mdi-chevron-right"></i></a>
+                    </li>
+                    </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-4">
+            <div class="card mb-4">
+            <div class="card-header d-flex flex-wrap justify-content-between gap-3">
+                <div class="card-title mb-0 me-1">
+                    <h5 class="mb-1">Cart Details</h5>
+
+                </div>
+                
+            </div>
+            <div class="card-body">
+                    <form method="post" action="../Order/saveorder">
+                     <div id="divcart"></div>
+                    
+                    <hr style="border:1px solid gray; margin-top:5px" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Total Amount</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" style="text-align:right">
+                                    <input type="hidden" value="0" id="hdncarttotal" name="total_amount" />
+                                    <input type="hidden" value="0" id="hdntotalqty" name="total_item" />
+                                <label><span id="carttotal">0</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border:1px solid gray; margin-top:5px" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success btn-fab demo waves-effect waves-light">
+                                <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function add_tocart(name,price,image,id)
+    {
+        var html = "<input type='hidden' id='pid' value='" + id + "' name='productid[]'/><div class='row'><div class='col-md-6'><div class='d-flex justify-content-start align-items-center mb-4'><div class='avatar me-2 pe-1'><img src='" + image + "' class='img-fluid'></div><div class='d-flex flex-column'><a href='app-user-view-account.html'><h6 class='mb-1'>" + name + "</h6></a></div></div></div><div class='col-md-3'><div class='form-group'><label>Price </label><input type= 'text' class='form-control' value ='" + price + "' name='rate[]'/></div></div><div class='col-md-3'><div class='form-group'><label>Qty </label><input type= 'text' class='form-control' value = '1' name='qty[]'/></div></div></div>"
+        $("#divcart").append(html);
+
+        $("#carttotal").text(Number($("#carttotal").text()) + Number(price));
+        $("#hdncarttotal").val(Number($("#carttotal").text()) + Number(price));
+        $("#hdntotalqty").val(Number($("#hdntotalqty").val()) + 1);
+    }
+</script>

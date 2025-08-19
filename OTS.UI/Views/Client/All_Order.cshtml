@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewData["Title"] = "All_Order";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<div class="recent-orders-wrapper">
+    <h3>All Orders</h3>
+
+    <div class="date-wrapper">
+        <div class="inputs">
+            <div class="from">
+                <label for="from-date">From Date</label>
+                <input type="date" class="form-date" id="txtfromdate">
+            </div>
+            <div class="upto">
+                <label for="upto-date">Upto Date</label>
+                <input type="date" class="form-date" id="txttodate">
+            </div>
+            <div>
+                <button class="btn btn-primary" type="button" onclick="getrecord()">Search</button>
+                <button class="btn btn-primary" type="button" onclick="export_pdf()">PDF</button>
+                <button class="btn btn-primary" type="button" onclick="export_excel()">Excel</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="table table_responsive" style="overflow:auto">
+    <table class="table table-striped" style="width:max-content;">
+        <thead>
+            <tr>
+                <!-- <th>Image</th> -->
+                <th>Order ID</th>
+                <th>Product Category</th>
+                <th>Shipping Address</th>
+                <th>Billing Address</th>
+                <th>Optional Shipping Address</th>
+                <th>Remark</th>
+                <th>Approval 1</th>
+                <th>Approval 2</th>
+                <th>Order Status</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Ordered Date</th>
+                @* <th>Action</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a href="../Client/vieworder?id=@item.id">@item.orderid</a></td>
+                    <td>@item.category</td>
+                    <td>@item.shipping_address</td>
+                    <td>@item.billing_address</td>
+                    <td>@item.shippingaddress2</td>
+                    <td>@item.remark</td>
+                    <td>@item.approvel_1</td>
+                    <td>@item.approvel_2</td>
+                    <td>@item.status</td>
+                    <td>@item.amount </td>
+                    <td>@item.qty</td>
+                    <td>@item.orderdate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+<hr>
+<script>
+    function export_excel() {
+        $.get("../Client/ExportToExcel_Allorder?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'AllOrder.xlsx'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+
+    function getrecord() {
+        window.location.href = "../Client/All_Order?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "&o=" + $("#txtorder").val() + ""
+    }
+
+    function export_pdf() {
+        $.get("../Client/ExportPdf_AllOrder?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/pdf'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'AllOrder.pdf'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+</script>
+@section Scripts1 {
+    <script>
+        function edit_qty(id) {
+            $.get('../Order/update_order_status?id=' + id + '&status=6', function (data) {
+                if (data == "Order Details Update Successfully") {
+                    //success_opup("Success", data);
+                    alert("Success");
+                    window.location.reload();
+                }
+                else {
+                    // error_opup("Error", data);
+                    alert("Error");
+                }
+            })
+        }
+
+        // function addtwishlist(id, productid) {
+        //     $.getJSON('../User/add_towishlist?id=' + id + '&productid=' + productid + '', function (data) {
+
+        //         success_opup("Success", "Product Add In Wishlist Successsfully")
+        //     })
+        // }
+        // function success_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "success",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+        // function error_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "error",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+    </script>
+}

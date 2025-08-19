@@ -1,0 +1,210 @@
+﻿@model OTS.Data.Models.combomodel
+@{
+    ViewData["Title"] = "stationary";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+
+<style>
+    .tooltip1 {
+        position: relative;
+        display: inline-block;
+    }
+
+        .tooltip1 .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #013087;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        .tooltip1:hover .tooltiptext {
+            visibility: visible;
+        }
+</style>
+<div class="row mb-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    @foreach (var item in Model.product_Model)
+                    {
+                        <div class="col-md-3 mb-2">
+                            <div class="card p-2 h-100 shadow-none border rounded-3">
+                                <div class="rounded-4 text-center mb-5">
+                                    <a href="#"><img class="img-fluid" src="~/uploads/@item.ImageUrl" alt="tutor image 1" style="width:200px; height:200px"></a>
+                                </div>
+                                <div class="card-body p-3 pt-0">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <span class="badge rounded-pill bg-label-primary">In Stock: @item.stock </span>
+                                        @* <p class="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
+                                    4.4 <span class="text-warning"><i class="ri-star-s-fill ri-24px me-1"></i></span><span class="fw-normal">(1.23k)</span>
+                                    </p> *@
+                                    </div>
+                                    @{
+                                        var str = "";
+                                        if (item.Description.Length > 20)
+                                        {
+                                            str = item.Description.Substring(0, 20);
+                                        }
+                                        else
+                                        {
+                                            str = item.Description;
+                                        }
+                                    }
+                                    <div class="h6 tooltip1">
+                                        @str
+                                        <span class="tooltiptext">@item.Description</span>
+                                    </div>
+                                    <p class="d-flex align-items-center mb-1">@item.Rate Rs.</p>
+
+                                    <div class="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap  flex-lg-wrap flex-xxl-nowrap">
+                                        <a class="w-100 btn btn-warning d-flex align-items-center waves-effect" href="#" onclick="addtcart(0,@item.id,@item.Rate);">
+                                            <i class="ri-shopping-cart-2-fill ri-16px align-middle me-2"></i><span>Add to cart</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header" style="background: orange;height: 50px;">
+                <h5 style="color: #fff; line-height:0.75rem !important">My Cart</h5>
+            </div>
+            <div class="card-body" style="padding: 10px;">
+
+                <div id="divcart">
+                    @{
+                        decimal total = 0;
+                    }
+                    @foreach (var item in Model.cart_Model)
+                    {
+                        total = Convert.ToDecimal(total) + (Convert.ToDecimal(@item.rate) * Convert.ToDecimal(@item.qty));
+                        <input type="hidden" id="pid" value="@item.Id" name="productid[]" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-start align-items-center mb-4">
+                                    <div class="avatar me-2 pe-1"><img src="~/uploads/@item.ImageUrl" class="img-fluid"></div>
+                                    <div class="d-flex flex-column"><h6 class="mb-1">@item.Description</h6>
+                                        <p>@item.rate Rs.</p>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Qty </label>
+                                    <input type="text" class="form-control" id="txtqty_@item.Id" value="@item.qty" name="qty[]" onchange="qtychange(@item.Id)" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <button type="button" class="btn btn-danger" style="margin-top: 30%;" onclick="delete_confirm_pop(@item.Id);"><i class="ri-delete-bin-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            <div class="card-footer" style="border-top:1px solid black">
+                <h5>Total Amount: <span id="h6ttlamt" style="margin-left: 40%;">@total Rs</span></h5>
+                <br />
+                <a href="../User/proceedtocart" class="btn btn-warning col-md-12">Proceed to Approval</a>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+@section Scripts {
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-danger me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+                 $.get('../User/delete_tocart?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+                })
+            }
+        })
+    }
+
+
+}
+@section Scripts1 {
+    <script>
+        function addtcart(id, productid, rate) {
+            $.getJSON('../User/add_tocart?id=' + id + '&productid=' + productid + '&qty=1&rate=' + rate + '', function (data) {
+                var html = "";
+                var total = 0;
+                for (var i = 0; i <= data.length - 1; i++) {
+                    total = Number(total) + (Number(data[i].rate) * Number(data[i].qty))
+                    html += "<input type='hidden' id='hdnrate_" + data[i].id + "' value='" + data[i].rate + "'/><input type='hidden' id='pid' value='" + data[i].productid + "' name='productid[]'/><div class='row'>    <div class='col-md-6'>        <div class='d-flex justify-content-start align-items-center mb-4'>            <div class='avatar me-2 pe-1'><img src='../Uploads/" + data[i].imageUrl + "' class='img-fluid'></div>            <div class='d-flex flex-column'><h6 class='mb-1'>" + data[i].description + "</h6></div></div></div><div class='col-md-3'><div class='form-group'><label>Qty </label> <input type='text' class='form-control' value='" + data[i].qty + "' name='qty[]' id='txtqty_" + data[i].id + "' onchange='qtychange(" + data[i].id + ")'/></div></div><div class='col-md-3'><div class='form-group'><button type='button' class='btn btn-danger' style='margin-top: 30%;' onclick='delete_confirm_pop(" + data[i].id + ");'><i class='ri-delete-bin-line'></i></button></div></div></div>";
+
+                }
+                $("#h6ttlamt").text(total + "Rs.");
+                $("#divcart").empty();
+                $("#divcart").append(html);
+
+            })
+        }
+        //<p>" + data[i].rate + " Rs.</p>
+        function qtychange(id) {
+            $.getJSON('../User/add_tocart?id=' + id + '&productid=0&qty=' + $("#txtqty_" + id + "").val() + '&rate=0', function (data) {
+                var html = "";
+                var total = 0;
+                for (var i = 0; i <= data.length - 1; i++) {
+                    total = Number(total) + (Number(data[i].rate) * Number(data[i].qty))
+                    html += "<input type='hidden' id='hdnrate_" + data[i].id + "' value='" + data[i].rate + "'/><input type='hidden' id='pid' value='" + data[i].productid + "' name='productid[]'/><div class='row'>    <div class='col-md-6'>        <div class='d-flex justify-content-start align-items-center mb-4'>            <div class='avatar me-2 pe-1'><img src='../Upload/" + data[i].imageUrl + "' class='img-fluid'></div>            <div class='d-flex flex-column'><h6 class='mb-1'>" + data[i].description + "</h6></div></div></div><div class='col-md-3'><div class='form-group'><label>Qty </label> <input type='text' class='form-control' value='" + data[i].qty + "' name='qty[]' id='txtqty_" + data[i].id + "' onchange='qtychange(" + data[i].id + ")'/></div></div><div class='col-md-3'><div class='form-group'><button type='button' class='btn btn-danger' style='margin-top: 30%;' onclick='delete_confirm_pop(" + data[i].id + ");'><i class='ri-delete-bin-line'></i></button></div></div></div>";
+
+                }
+                $("#h6ttlamt").text(total + "Rs.");
+                $("#divcart").empty();
+                $("#divcart").append(html);
+
+            })
+        }
+        //<p>" + data[i].rate + "Rs.</p>
+    </script>
+}
+

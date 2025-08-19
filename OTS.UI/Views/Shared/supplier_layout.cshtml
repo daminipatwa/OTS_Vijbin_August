@@ -1,0 +1,357 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Dashboard</title>
+    
+    <link href="~/assets/css/supplier_style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="~/assets/img/ots.ico" />
+    <link href="~/assets/css/responsive.css" rel="stylesheet" />
+    <style>
+        #login-role-name {
+            font-weight: 500;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+       <a href="../supplier/index">
+            <img src="../assets/img/2363735.png" id="client-dash-logo" />
+        </a>
+        @*  <div class="searchbar-wrapper">
+        <input type="search" name="" id="" placeholder="Search..." required>
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div> *@
+
+        <div class="profile-wrapper">
+            <div class="password-dropdown">
+                <div class="dropdown-content">
+                    <ul style="list-style-type: none;padding-left: 0rem !important;" id="not_div"></ul>
+                </div>
+            <abbr title="Notifications">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                <i class="fa-solid fa-bell"></i></abbr>
+            </div>
+            <span id="login-role-name">Hi, Supplier</span>
+            <div class="profile">
+               
+                <img src="../images/user.jpg" alt="" onclick="toggleDropdown('myDropdown')">
+                <div id="myDropdown" class="profile-content" style="padding: 8px;">
+                   
+                    <a href="../Account/Logout"><button class="btn btn-danger col-md-12">Logout <i class="fa-solid fa-right-from-bracket"></i></button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!------------------------------ middle-main-container Start ------------------------------------->
+    <div class="middle-main-container">
+
+        <!------------------------------ left-area-wrapper Start ------------------------------------->
+        <div class="left-area-wrapper">
+            @* <div class="sidebar-profile">
+
+            <img src="../assets/img/2363735.png" id="clint-profile-img" />
+
+            </div>
+            <hr> *@
+            <div class="sidebarmenus">
+                <!-- <div class="sidemenulist">
+                    <p><i class="fas fa-truck"></i> Establish vendor/suppliers </p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-shopping-cart"></i> Order</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-box-open"></i> Product Management</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-users"></i> Corporate Users</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-database"></i> Create Master</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-chart-line"></i> MIS Report</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-file-alt"></i> Challan</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-file-invoice"></i> Manage Invoice</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-clock"></i> Run Time Order</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-handshake"></i> Agreement </p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="sidemenulist">
+                    <p><i class="fas fa-building"></i> About Company</p>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div> -->
+        <div class="sidemenulist" onclick="toggleDropdown('vendorDropdown')">
+            <span class="icon"><i class="fas fa-truck"></i> Establish Client/Admin</span> 
+            <i class="fa-solid fa-caret-down"></i>   
+        </div>
+        <div id="vendorDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/Client">Create Client</a>
+            <!-- <a href="#">Sub-item 2</a> -->
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('orderDropdown')">
+            <span class="icon"><i class="fas fa-shopping-cart"></i> Order</span>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="orderDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/Allorder">Acknowlege Order</a>
+                    <a href="../Supplier/UnproceedOrder">Unproceed Order</a>
+                    <a href="../Supplier/ApprovedOrder">Approved Order</a>
+                    <a href="../Supplier/ReleaseOrder">Released Order</a>
+                    <a href="../Supplier/DeniedOrder">Denied Order</a>
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('productDropdown')">
+            <span class="icon"><i class="fas fa-box-open"></i> Product Management</span>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="productDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/UploadProduct">Upload Product</a>
+                    <a href="../Supplier/AddProduct">Add Single Product</a>
+                    <a href="../Supplier/stationary">Stationary</a>
+                    @* <a href="../Supplier/visitingCard">Visiting Card</a>
+                    <a href="../Supplier/Printing">Printing Card</a> *@
+                    <a href="../Supplier/Housekeeping">Housekeeping Supplies</a>
+                    @*<a href="#">Booklist</a> *@
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('usersDropdown')">
+            <span class="icon"><i class="fas fa-users"></i> Corporate Users</span>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="usersDropdown" class="sidebar-dropdown-content">
+            <a href="../supplier/user">Create User</a>
+            <a href="../supplier/userlist">View Users</a>
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('masterDropdown')">
+                   
+                        <span class="icon"><i class="fas fa-database"></i> Create Master</span>
+                   
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+       <div id="masterDropdown" class="sidebar-dropdown-content">
+                    <a href="../Supplier/Master">Create Master</a>
+           
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('reportDropdown')">
+            <span class="icon"><i class="fas fa-chart-line"></i> MIS Report</span>
+            <i class="fa-solid fa-caret-down"></i> 
+        </div>
+        <div id="reportDropdown" class="sidebar-dropdown-content">
+           @*  <a href="#">Default Wise</a> *@
+                    <a href="../Supplier/OrderwiseReport">Order Wise</a>
+                    <a href="../Supplier/ProductwiseReport">Product Wise</a>
+                  @*   <a href="../Supplier/CostwiseReport">Cost Center Wise</a> *@
+                    <a href="../Supplier/DepartmentReport">Department Wise</a>
+                    <a href="../Supplier/BranchwiseReport">Branch Wise</a>
+           @*  <a href="#">GST Wise</a> *@
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('challanDropdown')">
+            <span class="icon"><i class="fa-solid fa-receipt"></i> Challan</span>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="challanDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/CreateChallan">Add Challan</a>
+                    <a href="../Supplier/ChallanList">View Challan</a>
+        </div>
+        
+        <div class="sidemenulist" onclick="toggleDropdown('invoiceDropdown')">
+            <span class="icon"><i class="fas fa-file-invoice"></i> Manage Invoice</span> 
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="invoiceDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/Invoice">Make Invoice</a>
+           <a href="../Supplier/ViewInvoice">View Invoice</a>
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('QuotationDropdown')">
+            <span class="icon"><i class="fa-solid fa-list-check"></i> Quotation</span> 
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="QuotationDropdown" class="sidebar-dropdown-content">
+            <a href="../Supplier/Quotation">Upload Quotation</a>
+            <!-- <a href="#">View Invoice</a> -->
+        </div>
+                @* <div class="sidemenulist" onclick="toggleDropdown('RunTimeOrderDropdown')">
+                <span class="icon"><i class="fas fa-play"></i> Run Time Order</span>
+                <!-- <i class="fa-solid fa-caret-down"></i> -->
+                </div> *@
+                @*   <div id="RunTimeOrderDropdown" class="sidebar-dropdown-content">
+                <a href="../Supplier/RunTimeOrder">Run Time Order</a>
+
+                </div> *@
+        <div class="sidemenulist" onclick="toggleDropdown('AgreementDropdown')">
+            <span class="icon"><i class="fa-solid fa-handshake"></i> Agreement</span> 
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="AgreementDropdown" class="sidebar-dropdown-content">
+                    <a href="../Supplier/uploadagreement">Upload Agrrement</a>
+                    <a href="../Supplier/Viewagreement">View Agreement</a>
+        </div>
+
+        <div class="sidemenulist" onclick="toggleDropdown('FrenchisesDropdown')">
+            <span class="icon"><i class="fa-solid fa-store"></i> Frenchises</span> 
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div id="FrenchisesDropdown" class="sidebar-dropdown-content">
+                    <a href="../Supplier/frenchises">Add Frenchises</a>
+                    <a href="../Supplier/Viewfrenchises">View Frenchises</a>
+        </div>
+
+                <div class="sidemenulist" onclick="toggleDropdown('AboutDropdown')">
+                    <span class="icon"><i class="fa-solid fa-circle-info"></i> <a href="../Supplier/About" style="text-decoration:none;color:black;">About Company</a></span>
+                    <!-- <i class="fa-solid fa-caret-down"></i> -->
+        </div>
+        
+
+                
+            </div>
+        </div>
+        <!------------------------------ left-area-wrapper End------------------------------------->
+
+        <!------------------------------ right-area-wrapper Start ------------------------------------->
+        <div class="right-area-wrapper">
+
+            @RenderBody()
+
+        </div>
+        <!------------------------------ right-area-wrapper End ------------------------------------->    
+        </div>
+        <!------------------------------ middle-main-container End------------------------------------->
+        </div>
+    </div>
+    <!------------------------------ footer start ------------------------------------->
+
+    <footer>
+
+        <div class="main-footer">
+            <div class="left-footer">
+                @* <img src="." alt="" id="footer-logo"> *@
+                <img src="../assets/img/ots.ico" id="footer-logo" />
+            </div>
+
+            <div class="right-footer">
+                <p>Copyright © 2017 By ChoreDigital Communication LLP</p>
+            </div>
+        </div>
+
+    </footer>
+    <!------------------------------ footer end ------------------------------------->
+    <div class="modal fade" id="msgmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+
+                </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                            <h3><span id="txtmsg"></span></h3>
+           
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="close_pop1()">OK</button>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="../user/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../user/assets/vendor/libs/popper/popper.js"></script>
+    <script src="../user/assets/vendor/js/bootstrap.js"></script>
+    <script src="../user/assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../user/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../user/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../user/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../user/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../user/assets/vendor/js/menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        function toggleDropdown(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "flex";
+            } else {
+                element.style.display = "none";
+            }
+        }
+        $(document).ready(function () {
+            var msg = "@TempData["Msg"]";
+            if (msg != "") {
+                $("#txtmsg").text(msg);
+                $("#msgmodal").modal('show');
+            }
+            getnotification();
+        });
+        function close_pop1() {
+            
+            $("#msgmodal").text("");
+            $("#msgmodal").modal('hide');
+
+        }
+         function getnotification() {
+                $.getJSON('../Home/getnotification1', function (data) {
+                    $("#spnncount").text(data.length);
+                    var html = "";
+                    for (var i = 0; i <= data.length-1; i++) {
+                        html += " <li style='padding-top: 13px;padding-bottom: 13px;border-bottom: 1px dashed #c4bdbd;'><a class='dropdown-item' href='#' onclick='updatenotify("+data[i].id+", \"" + data[i].url + "\")'>" + data[i].msg + "</a></li>";
+                    }
+                    $("#not_div").append(html);
+                })
+            }
+
+            function updatenotify(id,url) {
+                $.get('../Home/update_notification?id='+id+'', function (data) {
+                    if(data=="Success")
+                    {
+                        window.location.href = url;
+                    }
+                })
+            }
+        @RenderSection("scripts", required: false)
+    </script>
+    @RenderSection("scripts1", required: false)
+</body>
+
+</html>

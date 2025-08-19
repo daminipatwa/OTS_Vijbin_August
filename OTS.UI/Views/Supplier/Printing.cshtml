@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Printing";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>Printing Products</h3>
+    <a href="../Supplier/UploadPrinting" class="btn btn-success" style="float: right; margin-top: -32px;"><i class="fa-solid fa-upload"></i> Upload Design</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Particulars</th>
+                <th>Size</th>
+                <!-- <th>Make</th>
+                <th>Unit</th> -->
+                <!-- <th>Quantity</th> -->
+                <!-- <th>Stock</th>
+                <th>MRP</th>
+                <th>GST(%)</th> -->
+                <th>Action</th>
+                <!-- <th>Level 1</th>
+                <th>Level 2</th>
+                <th>Dispatch</th>    -->
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.product_Model)
+                {
+                    <tr>
+                        <td>@item.clientid</td>
+                        <td>@item.Description</td>
+                        <td>@item.size</td>
+                        <td><a href="../supplier/UploadPrinting?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>  </td>
+                    </tr>
+                }
+            }
+          
+        </tbody>
+    </table>
+</div>
+<hr>
+

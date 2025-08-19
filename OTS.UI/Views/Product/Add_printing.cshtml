@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "Add_printing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Add Printing Product</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <form method="post" action="#" enctype="multipart/form-data">
+
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control" name="clientid">
+                                        <option value="0">---Select Client---</option>
+                                        @foreach (var item in Model.Client_Model)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+
+                                        }
+                                    </select>
+                                    <label for="floatingInput">Client Name</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="desc" placeholder="Particulars" />
+                                    <label for="floatingInput">Particulars</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" name="size" placeholder="Size" />
+                                    <label for="floatingInput">Size</label>
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Upload Product
+                                </button>
+                                @*  <button type="button" class="btn btn-outline-secondary waves-effect">
+                                <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button> *@
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Printing List</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+
+                    <div class="row">
+                        <table class="datatables-basic table table-bordered">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Particulars</th>
+                                    <th>Size</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                @{
+                                    foreach (var item in Model.product_Model)
+                                    {
+                                        <tr>
+
+                                            <td>@item.Description</td>
+                                            <td>@item.size</td>
+                                           
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+@section Scripts {
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../Masters/Delete_branch?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}
+

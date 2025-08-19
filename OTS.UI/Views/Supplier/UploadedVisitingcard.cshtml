@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "UploadedVisitingcard";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="run-time-order-file-upload">
+    <h3>Upload Visiting Product</h3>
+     <form method="post" action="#" enctype="multipart/form-data">
+        <input type="hidden" value="@Model.productModel.id" name="id"/>
+    <div class="form-floating">
+        <select class="form-control" name="clientid">
+            <option value="0">---Select Client---</option>
+            @foreach (var item in Model.Client_Model)
+            {
+                    if (Model.productModel.clientid == item.Id)
+                    { 
+                        <option value="@item.Id" selected>@item.Name</option>
+                    }
+                    else
+                    {
+
+                        <option value="@item.Id">@item.Name</option>
+                    }
+
+            }
+        </select>
+      
+    </div>
+    <br>
+    <div class="form-floating">
+
+            <input type="text" class="form-control" name="desc" placeholder="Title" value="@Model.productModel.Description" />
+       
+    </div>
+    <br>
+    
+    <div class="mb-5">
+        <label for="formFile" class="form-label">Choose file or drop here</label>
+        <input type="file" name="file" />
+            <input type="hidden" name="filepath1" value="@Model.productModel.ImageUrl" />
+    </div>
+
+    <button type="submit" class="col-md-12" id="run-time-order-submit-btn">Upload Product</button>
+    </form>
+</div>
+

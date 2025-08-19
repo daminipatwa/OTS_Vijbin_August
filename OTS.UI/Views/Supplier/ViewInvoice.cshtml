@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "ViewInvoice";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View Invoice</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>App.Level 1</th>
+                @* <th>App.Level 2</th>
+                <th>App.Level 3</th> *@
+                
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Order Placed Time</th>
+                <th>Action</th>
+                <!-- <th>Level 2</th>
+                <th>Dispatch</th>    -->
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        <td>@item.approvstatus</td>
+
+              
+                        <td>@item.amount</td>
+                        <td>@item.qty</td>
+                        <td>@item.orderdate</td>
+                        
+                        <td> <a class="btn btn-outline-primary btn-sm" href="../Supplier/Printinvoice?id=@item.id" target="_blank"><i class="fa-solid fa-download"></i> PDF</a> </td>
+                       
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+    </table>
+ 
+
+</div>
+<hr>
+

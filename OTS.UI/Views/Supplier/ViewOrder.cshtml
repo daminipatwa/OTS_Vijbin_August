@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:10%">Images</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>GST %</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.order_list)
+            {
+                decimal total = (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + item.gst_amt;
+                <tr>
+                    <td><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:50%"></td>
+
+                    <td>@item.Description</td>
+                    <td>@item.category</td>
+                    <td>@if(@item.updated_qty=="0"){@item.qty} else{@item.updated_qty}</td>
+                    <td>@item.rate</td>
+                    <td>@item.gst_per</td>
+                    <td>@total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h5>
+        Total Amount : @{
+            decimal amount = 0;
+            foreach (var item in Model.order_list)
+            {
+                @if (@item.updated_qty == "0")
+                {
+                    amount = amount + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate))+item.gst_amt;
+                }
+                else
+                {
+                    amount = amount + (Convert.ToDecimal(item.updated_qty) * Convert.ToDecimal(item.rate)) + item.gst_amt;
+                }
+            }
+        }
+        @amount rs.
+    </h5>
+</div>
+<hr>

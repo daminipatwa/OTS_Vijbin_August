@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "ViewAgreement";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+<h3>View Agreement</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Your Name</th>
+            <th>Date of Agreement</th>
+            <th>Download / View</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.client_name</td>
+                <td>@item.createdon</td>
+                <td>
+                    <a href="../uploads/@item.file_path" download="" class="btn btn-primary"><i class="fa-solid fa-download"></i></a> | <a href="@Url.Content("~/uploads/" + item.file_path)" target="_blank" class="btn btn-warning">
+                        <i class="fas fa-eye"></i>
+                    </a>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+

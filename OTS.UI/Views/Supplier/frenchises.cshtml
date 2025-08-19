@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "frenchises";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+ <div class="add-vendor-wrapper">
+                <h3>Frenchises</h3>
+                <form action="#" id="add-vendorform" method="post">
+
+                    <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="First Name" name="first_name" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Last Name" name="last_name" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="E-Mail ID" name="emailid" required>
+                      </div>
+
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="GST(%)" name="gst" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Phone No." name="phoneno" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Registration Number" name="register" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Product / Service Interest" name="intrest" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Questions About Features / Benefits" name="question" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Operational Location" name="location" required>
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Types of Supplies" name="type" required>
+                      </div>
+
+
+                    <p> <input type="checkbox" id="chkactive" onchange="chk_change()" required> I except the Franchisee agrees not to directly communicate with clients or customers of the Supplier for any billing, invoicing, or financial matters related to the products supplied by the Supplier. The Franchisee's sole responsibility shall be limited to the supply and delivery of products as outlined in this contract. Any attempt to bypass the Supplier and engage in direct communication with clients for billing purposes shall be considered a breach of contract. In the event of such breach, the Supplier reserves the right to take legal action and seek damages for any losses incurred as a result of the Franchisee's actions.This clause should clearly outline the expectations and responsibilities of the franchisee regarding client communication and billing matters, helping to prevent any misunderstandings or breaches of contract. Make sure to review it with legal counsel to ensure it aligns with your specific business needs and complies with relevant laws and regulations.</p>
+
+        <input type="hidden" id="hdnactive" name="accept" value="0" />
+                      <button class="col-md-6" id="vendor-submit-btn">Submit</button>
+
+                      <button class="col-md-6" id="vendor-reset-btn">Reset</button>
+                    </form>
+                      </div>
+                
+@section Scripts1 {
+
+               <script>
+        function chk_change() {
+            if ($("#chkactive").prop('checked') == true) {
+                $("#hdnactive").val(1);
+            }
+            else {
+                $("#hdnactive").val(0);
+            }
+        }
+               </script>
+}
+

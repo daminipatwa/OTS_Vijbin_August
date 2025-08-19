@@ -1,0 +1,101 @@
+﻿@model IEnumerable<OTS.Data.Models.order_list_model>
+@{
+    ViewData["Title"] = "AllOrder";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>Aknowledge Orders</h3>
+
+    <table class="datatables-basic table table-bordered">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                @* <th>Approval Status</th> *@
+                <th>Quantity</th>
+                <th>Department</th>
+                <th>Shipping Address</th>
+                <th>Billing Address</th>
+                <th>Optional Shipping Address</th>
+                <th>Remark</th>
+                @* <th>Order Status</th> *@
+                <th>Rate</th>
+                <th>Ordered Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        @*<td>@item.approvstatus</td>*@
+                        <td>@item.qty</td>
+                        <td>@item.department</td>
+                        <td>@item.shipping_address</td>
+                        <td>@item.billing_address</td>
+                        <td>@item.shippingaddress2</td>
+                        <td>@item.remark</td>
+                        @*<td>@item.status</td>*@
+                        <td>@item.amount</td>
+                        <td>@item.orderdate</td>
+                        <td>
+                            <a href="../Supplier/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a>
+                            <button class="btn btn-primary" onclick="edit_qty(@item.id,12,'@item.orderid')">Accept</button> <span>|</span>
+                            <button class="btn btn-danger" onclick="edit_qty(@item.id,13)"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<hr>
+
+@section Scripts1 {
+    <script>
+        function edit_qty(id,status,ordrid) {
+            $.get('../Order/update_order_status?id=' + id + '&status=' + status + '', function (data) {
+                if (data == "Order Details Update Successfully") {
+                    //success_opup("Success", data);
+                    alert(ordrid +"successfully approved");
+                    window.location.reload();
+                }
+                else {
+                    // error_opup("Error", data);
+                    alert("Error");
+                }
+            })
+        }
+
+        // function addtwishlist(id, productid) {
+        //     $.getJSON('../User/add_towishlist?id=' + id + '&productid=' + productid + '', function (data) {
+
+        //         success_opup("Success", "Product Add In Wishlist Successsfully")
+        //     })
+        // }
+        // function success_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "success",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+        // function error_opup(title, text) {
+        //     Swal.fire({
+        //         title: title,
+        //         text: text,
+        //         icon: "error",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary waves-effect waves-light"
+        //         },
+        //         buttonsStyling: !1
+        //     })
+        // }
+    </script>
+}

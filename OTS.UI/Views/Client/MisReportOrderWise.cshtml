@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "MisReportOrderWise";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+    <!-- ----------------------Recent Orders Start------------------------------>
+
+        <h3>MIS Report Order wise</h3>
+        <div class="date-wrapper">
+            <div class="inputs">
+               @*  <div class="client">
+                    <label for="Order-ID">Order ID</label>
+                    <input type="text" class="form-date" id="txtorder">
+                </div> *@
+
+                <div class="from">
+                    <label for="from-date">From Date</label>
+                    <input type="date" class="form-date" id="txtfromdate">
+                </div>
+                <div class="upto">
+                    <label for="upto-date">Upto Date</label>
+                    <input type="date" class="form-date" id="txttodate">
+                </div>
+
+
+        <button class="btn btn-primary" type="submit" onclick="getrecord()">Search</button>
+        <button class="btn btn-primary" type="button" onclick="export_pdf()" style="margin-left:6px">PDF</button>
+                 <button class="btn btn-primary" type="button" onclick="export_excel()" style="margin-left:6px">Excel</button>
+
+
+
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Rate</th>
+                    <th>Quantity</th>
+                    <th>Order Placed Time</th>
+                    <th>Dispatch</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    { 
+                        <tr>
+                        <td>@item.orderid</td>
+                         <td>@item.status</td>
+                         <td>@item.amount</td>
+                        <td>@item.qty</td>
+                         <td>@item.orderdate</td>
+                        <td>In Process</td>
+                        </tr>
+                    }
+              }
+            </tbody>
+
+        </table>
+
+
+
+    <hr>
+
+
+<script>
+    function export_excel() {
+        $.get("../Client/ExportToExcel_order?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'OrderWiseReport.xlsx'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+
+    function getrecord() { 
+        window.location.href = "../Client/MisReportOrderWise?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "&o=" + $("#txtorder").val() + ""
+    }
+
+    function export_pdf() {
+        $.get("../Client/ExportPdf_Order?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/pdf'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'OrderWiseReport.pdf'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+</script>

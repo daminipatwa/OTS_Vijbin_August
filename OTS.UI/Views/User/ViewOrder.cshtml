@@ -1,0 +1,227 @@
+﻿@model OTS.Data.Models.order_combo
+@{
+    ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', 'sans-serif';
+    font-size: 17px;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+.header{
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 5px;
+}
+.bell{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 7px 10px;
+    border-radius: 3px;
+    margin: 5px;
+}
+.user-wrapper{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-wrapper img{
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+#search-form{
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 5px;
+    width: 50%;
+    margin-left: 50%;
+} 
+.form-control me-2{
+    outline: none;
+}
+.search-here{
+    width: 50%;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    margin-left: 30px;
+}
+.icons-wrapper{
+    display: ruby;
+}
+.nav-link{
+    color: black;
+}
+.Proceedtocart-wrapper{
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+}
+.details-wrapper{
+    background-color: white;
+    margin: 10px;
+    padding: 10px 20px 10px 20px;
+}
+.Overview{
+    /* border: 1px solid black; */
+    width:100%;
+    padding: 10px 20px 10px 20px;
+}
+.address{
+    width: 40%;
+    padding: 10px 30px 10px 30px;
+    display: inline-flex;
+    
+}
+#Overviewimg{
+    width: 42%;
+    height: 85px;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    margin-left: 30px;
+}
+
+.dropdown-item{
+    background-color: cornsilk;
+}
+.ContentPlaceHolder1_txtEmpCode{
+    padding: 47px;
+}
+.ContentPlaceHolder1_txtTotalQty{
+    padding: 35px;
+}
+
+    .CoulumnPadding {
+        width: 22%;
+        padding: 5px;
+        font-weight: 600;
+    }
+</style>
+<div class="Proceedtocart-wrapper">
+    <h3>View</h3>
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="tableView1" style="border:0px">
+                        <colgroup>
+                            <col style="width:10%">
+                            <col style="width:50%">
+                            <col style="width:20%">
+                            <col style="width:20%">
+
+                        </colgroup>
+                        <tbody>
+                            @* @foreach (var item in Model.order_list) *@
+                            @{
+                                // decimal Amount = Convert.ToInt32(item.qty) * (Convert.ToDecimal(item.rate) + Convert.ToDecimal(item.gst_per));
+                               <tr>
+                                <td class="CoulumnPadding">Order ID :</td>
+                                <td class="firstDivWidth">
+                                    <span id="ContentPlaceHolder1_txtORDNo">@Model.order_List_Model.orderid</span>
+                                </td>
+                                <td id="ContentPlaceHolder1_txtChallanURL" class="firstDivWidth"></td>
+                            </tr>
+                            <tr>
+                                    <td class="CoulumnPadding">Order Date:</td>
+                                <td class="firstDivWidth">
+                                    <span id="ContentPlaceHolder1_txtORDDate">@Model.order_List_Model.orderdate</span>
+                                </td>
+                                <td class="CoulumnPadding">Total Quantity :</td>
+                                <td class="firstDivWidth">
+                                    <span id="ContentPlaceHolder1_txtTotalQty">@Model.order_List_Model.qty</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="CoulumnPadding">Product Category:</td>
+                                <td class="firstDivWidth"><span id="ContentPlaceHolder1_txtNetTotal">@Model.order_List_Model.category</span></td>
+                                @* <td class="CoulumnPadding">Total Amount :</td>
+                                <td class="firstDivWidth" style="font-size:20px"><span id="ContentPlaceHolder1_txtOrderamount">@Model.order_List_Model.amount</span></td> *@
+                            </tr>
+                          
+                            <tr>
+                                <td class="CoulumnPadding">Shipping Address :</td>
+                                <td class="firstDivWidth" colspan="3">
+                                    <span id="ContentPlaceHolder1_txtDepartment">@Model.order_List_Model.shipping_address</span>
+                                </td>
+
+                               
+                            </tr>
+                            <tr>
+                                <td class="firstDivWidth"></td>
+                                <td class="firstDivWidth"></td>
+                                <td class="firstDivWidth"></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+                <!-- <div class="card-header">
+
+                </div> -->
+                <div class="card-body">
+                    <div class="table table-responsive">
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    
+                                    <th>Product Name</th>
+                                    
+                                    <th>Quantity</th>
+                                    <th>HSN Code</th>
+                                     <th>GST(%)</th>
+                                    <th>Rate</th>
+                                   <th>Total Order</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach (var item in Model.order_list)
+                                {
+                                    decimal Amount = Convert.ToInt32(item.qty) * (Convert.ToDecimal(item.rate) + Convert.ToDecimal(item.gst_per));
+                                    <tr>
+                                        <td><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg"></td>
+
+                                        <td>@item.Description</td>
+                                        
+                                        <td>@item.qty</td>
+                                        <td>@item.hsncode</td>
+                                        <td>@item.gst_per</td>
+                                        <td>@item.rate</td> 
+                                        <td>@item.total_amount</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,140 @@
+﻿@model IEnumerable<OTS.Data.Models.DepartmentModel>
+@{
+    ViewData["Title"] = "Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+
+    <div class="row">
+
+        <!-- Multi  -->
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Department Master</h5>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" name="id" value="0" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Department Name" aria-describedby="floatingInputHelp" name="name">
+                                    <label for="floatingInput">Department Name</label>
+
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-warning btn-fab demo waves-effect waves-light">
+                                <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary waves-effect">
+                                <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                            </button>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Multi  -->
+    </div>
+    <div class="row" style="margin-top:5%;">
+
+        <!-- Multi  -->
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Department List</h5>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="datatables-basic table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Created Date</th>
+                                        <th>Created Userid</th>
+
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        if (Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>@item.Id</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.createdon</td>
+                                                    <td>@item.createdby</td>
+                                                    <td>
+                                                        <a href="../Masters/Edit_Department?Id=@item.Id" class="btn btn-outline-secondary waves-effect">
+                                                            <span class="tf-icons mdi mdi-pencil me-1"></span>Edit
+                                                        </a>
+                                                        <button type="button" class="btn btn-outline-secondary waves-effect" onclick="delete_confirm_pop(@item.Id)">
+                                                            <span class="tf-icons mdi mdi-delete me-1"></span>Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            }
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Multi  -->
+    </div>
+</div>
+@section Scripts {
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../Masters/Delete_department?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}
+

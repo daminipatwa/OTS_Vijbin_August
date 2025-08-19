@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "UploadProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    
+
+    <div class="row">
+  
+        <!-- Multi  -->
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Upload Product</h5>
+                <div class="card-body">
+                    <form action="/upload" class="dropzone needsclick dz-clickable" id="dropzone-multi">
+
+                        <div class="dz-message needsclick">
+                            Drop files here or click to upload
+                            <span class="note needsclick">(This is just a demo dropzone. Selected files are <span class="fw-medium">not</span> actually uploaded.)</span>
+                        </div>
+
+
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>
+                                    Clients
+                                </label>
+                                <select class="form-control"></select>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row" style="margin-top: 5%;">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-success btn-fab demo waves-effect waves-light">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        <!-- Multi  -->
+    </div>
+
+</div>
+

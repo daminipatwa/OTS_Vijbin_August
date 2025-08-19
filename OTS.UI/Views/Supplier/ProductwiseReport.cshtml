@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewData["Title"] = "ProductwiseReport";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>MIS Report Product wise</h3>
+    <div class="date-wrapper">
+        <div class="inputs">
+            @* <div class="client">
+                <label for="Order-ID">Product Name</label>
+                <input type="text" class="form-date">
+            </div> *@
+           
+            <div class="from">
+                <label for="from-date">From Date</label>
+                <input type="date" class="form-date"  name="f" id="txtfromdate">
+            </div>
+            <div class="upto">
+                <label for="upto-date">Upto Date</label>
+                <input type="date" class="form-date" name="t" id="txttodate">
+            </div>
+            <div class="Report">
+               
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <button class="btn btn-outline-primary" type="submit" onclick="getrecord()">Search</button>
+                     <button class="btn btn-outline-primary" type="submit" onclick="export_pdf()">Export To PDF</button>
+                <button class="btn btn-outline-primary" type="button" onclick="export_excel();">Export To Excel</button>
+            </div>
+                
+                
+            </div>
+           
+            <div style="margin-top: 3%;">
+                
+        </div>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>GST(%)</th>
+                <th>HSN Code</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Order Placed Time</th>
+                <th>Dispatch</th>
+                <th>Payment Method</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        <td>@item.Description</td>
+                        <td>@item.category</td>
+                        <td>@item.gst</td>
+                        <td>@item.hsn</td>
+                        <td>@item.qty</td>
+                        <td>@item.rate</td>
+                        <td>@item.orderdate</td>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                }
+            }
+        </tbody>
+
+    </table>
+
+
+</div>
+<hr>
+<script>
+     function export_excel() {
+            $.get("../Supplier/ExportToExcel", function (res) {
+
+                var binaryData = atob(res.data);
+
+                const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                });
+
+                // Create a URL for the blob
+                const url = window.URL.createObjectURL(blob);
+
+                // Create a link element to trigger the download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ProductWiseReport.xlsx'; // Set the desired file name
+                a.click();
+
+                // Revoke the object URL to free up resources
+                window.URL.revokeObjectURL(url);
+            })
+           
+        }
+
+    function getrecord() {
+        window.location.href = "../Supplier/ProductwiseReport?f=" + $("#txtfromdate").val() + "&t=" + $("#txttodate").val() + "&o=" + $("#txtorder").val() + ""
+    }
+
+    function export_pdf() {
+        $.get("../Supplier/ExportPdf_product", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/pdf'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ProductWiseReport.pdf'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+</script>

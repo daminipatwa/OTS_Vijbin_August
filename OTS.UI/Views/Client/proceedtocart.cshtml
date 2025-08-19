@@ -1,0 +1,151 @@
+﻿@{
+    ViewData["Title"] = "proceedtocart";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+<!-- ----------------------Add Vendor Form Start------------------------------>
+<div class="add-vendor-wrapper">
+    <h3>Proceed to Cart</h3>
+   
+     
+                    <form method="post" action="../Order/saveorder_client" id="add-vendorform">
+                            
+                            <div class="form-group mb-3 col-md-6">
+                                   
+                                        <input type="text" class="form-control" value="@Model.CorpUser_Models.shippingaddress1">
+                                   
+
+                                </div>
+                            <div class="form-group mb-3 col-md-6">
+                                   
+                                        <input type="text" class="form-control" value="@Model.CorpUser_Models.billingaddress">
+                                   
+
+                                </div>
+                         
+                            <div class="form-group mb-3 col-md-6">
+                                   
+                                        <input type="text" class="form-control" value="@Model.CorpUser_Models.shippingaddress2">
+                                   
+
+                                </div>
+                            <div class="form-group mb-3 col-md-6">
+                                   
+                                        <input type="text" class="form-control" placeholder="Remark....">
+                                
+
+                                </div>
+                            
+                            <div class="form-group mb-3 col-md-6">
+                                    
+                                        <input type="text" class="form-control" placeholder="Approver Name....." value="@Model.CorpUser_Models.approvalby">
+
+                                   
+
+                                </div>
+                            <div class="form-group mb-3 col-md-6">
+                                   
+                                        <button type="submit" class="btn btn-primary" style="background-color: rgb(241, 129, 80); border: 1px solid white;">Place Order</button>
+                                  
+
+                                </div>
+                           
+                        </form>
+                    
+   
+</div>
+
+
+<hr>
+
+<!-- ----------------------Add Vendor Form End------------------------------>
+<!-- ----------------------Recent Orders Start------------------------------>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>Overview</h3>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th style="width:9%">Image</th>
+                                <th>Product Name</th>
+                                <th>Make</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>HSN Code</th>
+                                <th>GST(%)</th>
+                                <th>Rate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.cart_Model)
+                            {
+                                <tr>
+                                    <td><img src="~/uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:43%"></td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Make</td>
+                                    <td>@item.Category</td>
+                                    <td>@item.qty</td>
+                                    <td>@item.HSN</td>
+                                    <td>18</td>
+                                    <td>@item.rate</td>
+
+                                    <td>
+                                        <div class="delete-wrapper">
+                                            <button class="btn btn-danger" style="background-color: rgb(241, 129, 80);" onclick="delete_confirm_pop(@item.Id)"><i class="ri-delete-bin-line"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<!-- ----------------------Recent Orders End------------------------------>
+@section Scripts {
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-danger me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+                 $.get('../User/delete_tocart?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+                })
+            }
+        })
+    }
+
+
+}

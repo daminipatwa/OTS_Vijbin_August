@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+ @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!-- ----------------------OrderWrapper Start------------------------------>
+<div class="order-wrappers">
+        <a href="../Client/new_Order" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            @* <i class="fa-solid fa-boxes-stacked"></i> *@
+            <h2>New Orders</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.product_uploaded</p>
+        </div>
+        </a>
+    
+        <a href="../Client/All_Order" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            @* <i class="fa-solid fa-clipboard-list"></i> *@
+            <h2>All Orders</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.complete_order</p>
+        </div>
+        </a>
+   
+    
+        <a href="../Client/Approved_Order" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            @* <i class="fa-solid fa-clock"></i> *@
+            <h2>Approved Orders</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.icompelete_order</p>
+        </div>
+        </a>
+</div>
+<hr>
+
+@* <iframe src="../Client/" height="70%" width="100%" title="Iframe Example" style="border:1px solid green; padding:10px;border-radius:5px;"></iframe> *@
+
+@* Recent Orders *@
+<div class="card">
+    <div class="card-header">
+        <h3>Recent Order</h3>
+    </div>
+    <div class="card-body">
+        <div class="table table-responsive">
+            <table class="table table-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product Category</th>
+                       @*  <th>Order By</th> *@
+                        <th>Shipping Address</th>
+                        <th>Billing Address</th>
+                        <th>Optional Shipping Address</th>
+                        <th>Total</th>
+                        <th>Quantity</th>
+                        <th>Created Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.orderid</td>
+                                <td>@item.category</td>
+                                @*<td>@item.username</td>*@
+                                <td>@item.shipping_address</td>
+                                <td>@item.billing_address</td>
+                                <td>@item.shippingaddress2</td>
+                                <td>@item.amount</td>
+                                <td>@item.qty</td>
+                                <td>@item.orderdate</td>
+                                <td>
+                                    <a href="../client/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a> |
+                                    @if (@item.category == "Stationery")
+                                    {
+                                        <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+     
+                                    }
+                                    <button class="btn btn-primary" onclick="edit_qty(@item.id,@item.userid,'@item.orderid')"><i class="fa-solid fa-check"></i></button> |
+                                    <button class="btn btn-danger" onclick="delete_confirm_pop(@item.id)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        } 
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

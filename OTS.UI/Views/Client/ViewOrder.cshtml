@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<div class="recent-orders-wrapper">
+    <h3>View</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:10%">Images</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Quantity</th>
+               <th>Rate</th>
+                <th>GST %</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                decimal rate = 0;
+            }
+                @foreach (var item in Model.order_list)
+                {
+                rate=(Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + item.gst_amt;
+                <tr>
+                    <td><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:50%"></td>
+
+                    <td>@item.Description</td>
+                    <td>@item.category</td>
+                    <td>@item.qty</td>
+                   <td>@item.rate</td>
+                    <td>@item.gst_per</td>
+                    <td>@rate</td>
+                </tr>
+                }
+        </tbody>
+    </table>
+    @{
+         
+                    decimal amount = 0;
+                    foreach (var item in Model.order_list)
+                    {
+                        amount = amount + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate))+item.gst_amt;
+                    }
+            <h5>
+
+
+                <span> Total Amount : @amount rs.</span>
+            </h5>
+        
+    }
+   
+</div>
+<hr>
+

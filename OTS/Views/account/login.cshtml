@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+   
+    <link href="~/loginassets/style.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
+<body>
+    <header>
+        <img src="~/loginassets/logo-wrapper.png" id="Logo" alt="Chore Virutal Logo">
+        <!-- <p>Chore Virtual System</p> -->
+    </header>
+    <!-- <br><br><br><br><br> -->
+
+    <div class="container">
+
+        <div class="container-left">
+            <h1>Hello</h1>
+            <p>Please Login to your Account</p>
+            <!-- <div class="Login-wrapper">
+              <button>Login as  <i class='bx bx-down-arrow-circle'></i></button>
+
+
+
+
+            </div> -->
+            <div class="dropdown">
+                <button class="dropbtn">Login as  <i class='bx bx-down-arrow-circle'></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Login as Client</a>
+                    <a href="#">Login as Supplier</a>
+                    <a href="#">Login as Employee</a>
+                </div>
+            </div>
+
+            <br>
+            <div class="wrapper">
+
+               
+                <div class="input-box">
+                    <i class='user'><img src="~/loginassets/Customer.png" alt=""></i>
+                    <input type="text" placeholder="Username" id="Username" required autofocus>
+                </div>
+                <div class="input-box">
+                    <i class='lock'><img src="~/loginassets/Lock.png" alt=""></i>
+                    <input type="password" placeholder="Password" name="password" id="password" />
+                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox">Remember me
+                    </label>
+                    <!-- <a href="#"> Forgot Password?</a> -->
+
+                </div>
+                <button type="submit" class="btn"> Login</button>
+
+
+            </div>
+            <!-- <br>
+            <br>
+            <div class="wrapper-link">
+
+              <p> All rights are reserved by ChoreDigital Communication LLP</p>
+
+              <a href="https://chorevirtual.com/"> WWW.ChoreVirtual.com</a>
+
+            </div> -->
+        </div>
+        <div class="container-right">
+            <br>
+            <br>
+            <br>
+            <br>
+            <img src="~/loginassets/19728-removebg-preview.png" alt="bannerimg">
+            <br>
+            <br>
+            <div class="wrapper-link">
+
+                <p> All rights are reserved by ChoreDigital Communication LLP</p>
+
+                <a href="https://chorevirtual.com/" style="text-decoration: none;"> www.chorevirtual.com</a>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="~/loginassets/Email.png" alt="email">  <p> support@flowots.com </p>
+        <img src="~/loginassets/Phone Bubble.png" alt="Phone"><p>9076320786 </p>
+
+    </footer>
+
+    <script src="~/loginassets/script.js"></script>
+
+</body>
+</html>

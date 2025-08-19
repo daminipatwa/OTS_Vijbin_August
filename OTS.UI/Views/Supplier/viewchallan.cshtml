@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "createchallan";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>View</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:10%">Images</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.order_list)
+            {
+                <tr>
+                    <td><img src="../Uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:50%"></td>
+
+                    <td>@item.Description</td>
+                    <td>@item.category</td>
+                    <td>
+                        @item.qty
+                    </td>
+                    @* <td>@if (@item.updated_qty == null)
+                        {
+                            @item.qty
+                        }
+                        else
+                        {
+                            @item.updated_qty
+                        }</td> *@
+                    <td>@item.rate</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h5>Total Amount: @Model.order_List_Model.amount rs</h5>
+    
+
+     <div class="add-vendor-wrapper">
+                <h3>Add Courier Services</h3>
+                <form method="post" id="add-vendorform" enctype="multipart/form-data">
+                    <input type="hidden" value="" name="id" id="hdnid"/>
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Air way Bill no/Tracking No." name="awbno">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Courier Name" name="curiourname">
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <select class="form-control" name="mode">
+                            <option value="0">Select Mode</option>
+                    <option value="Air">Air</option>
+                    <option value="Surface">Surface</option>
+                        </select>
+                      </div>
+            <div class="input-group mb-3">
+                <label for="formFile" class="form-label">Choose file or drop here</label>
+                <input class="form-control" type="file" id="formFile" name="file">
+            </div>
+            
+                
+           
+                     
+                       <button type="submit" class="submit">Submit</button>
+                     </form>
+                  </div>
+                
+   
+</div>
+<hr>
+@section Scripts1{
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        $(document).ready(function () {
+            $("#hdnid").val(getUrlVars()["id"]);
+        });
+    </script>
+}

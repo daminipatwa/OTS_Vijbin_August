@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "BranchwiseReport";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>MIS Report Branch wise</h3>
+    <div class="date-wrapper">
+        <div class="inputs">
+            <div class="client">
+                <label for="Order-ID">Branch Name</label>
+                <input type="text" class="form-date">
+            </div>
+
+            <div class="from">
+                <label for="from-date">From Date</label>
+                <input type="date" class="form-date">
+            </div>
+            <div class="upto">
+                <label for="upto-date">Upto Date</label>
+                <input type="date" class="form-date">
+            </div>
+            <div class="Report">
+                <form class="flex" role="search">
+                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                    @* <button class="btn btn-outline-primary" type="submit">Export To PDF</button> *@
+
+                </form>
+
+            </div>
+            <div style="margin-top: 3%;">
+                <button class="btn btn-outline-primary" type="button" onclick="export_excel();">Export To Excel</button>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Branch</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Order Placed Time</th>
+                <th>Dispatch</th>
+                <th>Payment Method</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        <td>@item.department</td>
+                        <td>@item.Description</td>
+                        <td>@item.Category</td>
+                        <td>@item.Rate</td>
+                        <td>@item.qty</td>
+                        <td>@item.orderdate</td>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                }
+            }
+        </tbody>
+
+    </table>
+
+
+</div>
+<hr>
+
+<script>
+    function export_excel() {
+        $.get("../Supplier/ExportToExcel_branch", function (res) {
+
+            var binaryData = atob(res.data);
+
+            const blob = new Blob([new Uint8Array(binaryData.length).map((_, index) => binaryData.charCodeAt(index))], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+
+            // Create a URL for the blob
+            const url = window.URL.createObjectURL(blob);
+
+            // Create a link element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'BranchWiseReport.xlsx'; // Set the desired file name
+            a.click();
+
+            // Revoke the object URL to free up resources
+            window.URL.revokeObjectURL(url);
+        })
+
+    }
+</script>
+

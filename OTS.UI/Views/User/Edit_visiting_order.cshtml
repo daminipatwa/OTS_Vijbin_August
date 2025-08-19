@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "Edit_visiting_order";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+    visiting-card-wrapper {
+        width: 100%;
+        padding: 10px;
+        display: inline-flex;
+        justify-content: space-evenly;
+    }
+</style>
+<div class="visiting-card-wrapper">
+    <div class="row">
+    @foreach (var item in Model)
+    { 
+        <div class="col-md-4">
+        <div class="body">
+            <div class="card">
+                <img src="../Uploads/@item.ImageUrl" class="card-img-top" alt="..." style="border-bottom:1px solid black">
+                <div class="card-body">
+                    <label for="card-details" style="margin-top: 10px;">Card-Details</label>
+                  <div class="row">
+                      <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.company_name">
+                                        <label for="basic-default-company">Company Name</label>
+                                    </div>
+                      </div>
+                  </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.first_name">
+                                        <label for="basic-default-company">First Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.last_name">
+                                        <label for="basic-default-company">Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.contactno1">
+                                        <label for="basic-default-company">Contact No. 1</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.contactno2">
+                                        <label for="basic-default-company">Contact No. 2</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.emailid">
+                                        <label for="basic-default-company">Email Id</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.designation">
+                                        <label for="basic-default-company">Designation</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.address" rows="3">
+                                        <label for="basic-default-company">Address</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline mb-4">
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="" value="@item.qty">
+                                        <label for="basic-default-company">Qty</label>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="Details">
+                            <button class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="size: 10px;"></i></button> | <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    }
+    </div>
+
+</div>
+

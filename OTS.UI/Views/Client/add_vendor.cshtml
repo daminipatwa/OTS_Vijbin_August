@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewData["Title"] = "add_vendor";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+ <!-- ----------------------Add Vendor Form Start------------------------------>
+            <div class="add-vendor-wrapper">
+                <h3>Add Vendor</h3>
+                <form action="#" id="add-vendorform">
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Name">
+                    </div>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Email ID">
+                    </div>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Phone">
+                    </div>
+
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="State">
+                    </div>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="GST">
+                    </div>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Location">
+                    </div>
+
+                 
+                    <select class="form-group mb-3 col-md-6 form-select-sm" aria-label="Small select example">
+                        <option selected>Stationary</option>
+                        <option value="2">Visiting</option>
+                        <option value="3">Printing</option>
+                        <!-- <option value="3">Hardware / Supply</option>
+                        <option value="3">Book List</option> -->
+                    </select>
+
+                    <div class="form-group mb-3 col-md-6">
+                        <input class="form-control" id="inputdefault" placeholder="Region">
+                    </div>
+
+                    <button class="col-md-6" id="vendor-submit-btn">Submit</button>
+                    <button class="col-md-6" id="vendor-reset-btn">Reset</button>
+                </form>
+            </div>
+            
+
+            <hr>
+
+            <!-- ----------------------Add Vendor Form End------------------------------>
+
+            <!-- ----------------------Recent Orders Start------------------------------>
+
+            <div class="recent-orders-wrapper">
+                <h3>Vendor List</h3>
+
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Vendor Name">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-group mb-3 col-md-6 " aria-label="Small select example">
+                            <option selected>Enable</option>
+                            <option value="2">Disabled</option>
+                            <!-- <option value="3">Printing</option>
+                                    <option value="3">Hardware / Supply</option>
+                                    <option value="3">Book List</option> -->
+
+                        </select>
+                        <button class="btn btn-outline-secondary btn-search-sm" type="button" id="button-addon2">
+                            <i class="bi bi-search"></i> <!-- Bootstrap Icons search icon -->
+                            Search
+                        </button>
+                    </div>
+
+
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>E-Mail ID</th>
+                            <th>Phone No.</th>
+                            <th>State</th>
+                            <th>GST No.</th>
+                            <th>Location</th>
+                            <th>Service Category</th>
+                            <th>Region</th>
+                            <th>Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>xyz</td>
+                            <td>xyz@gmailcom</td>
+                            <td>1545673988</td>
+                            <td>Maharashtra</td>
+                            <td>0000</td>
+                            <td>Mumbai</td>
+                            <td>Stationary</td>
+                            <td>North</td>
+                            <td><button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button> |
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>xyz</td>
+                            <td>xyz@gmailcom</td>
+                            <td>1545673988</td>
+                            <td>Maharashtra</td>
+                            <td>0000</td>
+                            <td>Mumbai</td>
+                            <td>Stationary</td>
+                            <td>North</td>
+                            <td><button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button> |
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                          
+                        </tr>
+                        <tr>
+                            <td>xyz</td>
+                            <td>xyz@gmailcom</td>
+                            <td>1545673988</td>
+                            <td>Maharashtra</td>
+                            <td>0000</td>
+                            <td>Mumbai</td>
+                            <td>Stationary</td>
+                            <td>North</td>
+                            <td><button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button> |
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+
+            <!-- ----------------------Recent Orders End------------------------------>
+

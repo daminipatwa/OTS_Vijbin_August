@@ -1,0 +1,64 @@
+﻿@model IEnumerable<OTS.Data.Models.ProductModel>
+@{
+    ViewData["Title"] = "UploadedProduct";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+   <div class="row">
+       <div class="col-md-8">
+            <h3>Total Uploaded Product</h3>
+            <h5>Your Uploaded Product : @Model.Count()</h5>
+       </div>
+       <div class="col-md-4">
+           <a href="../Supplier/Addproduct" class="btn btn-primary">Add New Product</a>
+       </div>
+   </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th style="width:10%!important">Image</th>
+                <th>Product Description</th>
+                <th>Category</th>
+                <th>Make</th>
+                <th>Unit</th>
+                <!-- <th>Quantity</th> -->
+                <th>Stock</th>
+                <th>MRP</th>
+                <th>GST(%)</th>
+               @*  <th>Action</th> *@
+                <!-- <th>Level 1</th>
+                <th>Level 2</th>
+                <th>Dispatch</th>    -->
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.id</td>
+                        <td><img src="../uploads/@item.ImageUrl" style="width:40%" /></td>
+                        <td>@item.Description</td>
+                        <td>@item.Category</td>
+                        <td>@item.Make</td>
+                        <td>@item.Unit</td>
+                        <td>@item.stock</td>
+                        <td>@item.Rate</td>
+                        <td>@item.gst</td>
+                      
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+        </table>
+</div>
+
+
+<hr>
+

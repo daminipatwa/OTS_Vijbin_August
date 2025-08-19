@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewData["Title"] = "printing";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<style>
+    span {
+        cursor: pointer;
+    }
+
+    .number {
+        /* margin: 100px; */
+    }
+
+    .minus, .plus {
+        width: 30px;
+        height: 37px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 8px 5px 8px 5px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .number_counter {
+        height: 34px;
+        width: 100px;
+        text-align: center;
+        font-size: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Printing</h5>
+                <div class="card-body">
+                    <form method="post" action="../Order/saveorder_printing" id="frmprint">
+                        <input type="hidden" value="" name="productid" id="hdnproductid"/>
+                        <input type="hidden" value="" name="qty" id="hdnqty" />
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    
+                                    <textarea class="form-control" rows="2" placeholder="Location" name="location"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                              
+                                    <input type="text" class="form-control" name="companyname" placeholder="Company name" />
+                               
+                            </div>
+                          
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label></label>
+                                    <textarea class="form-control" rows="2" placeholder="Address To Be Printed" name="address"></textarea>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="telno" placeholder="Tel No." />
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="mobileno" placeholder="Mobile No." />
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="website" placeholder="Website" />
+                            </div>
+                          
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <table class="datatables-basic table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Particulars</th>
+                                            <th>Size</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var item in Model)
+                                            {
+                                                                <tr>
+                                                                    <td>
+                                                        <input type="checkbox" class="form-check-input" id="chk_@item.id" value="@item.id" />
+                                                                    </td>
+                                                                    <td>@item.Description</td>
+                                                                    <td>@item.size</td>
+                                                                    <td>
+                                                                        <div class="number">
+                                                                <input type="button" class="minus" value="-" id="btn_m_@item.id" onclick="minus(@item.id)" />
+                                                                            <input type="text" class="number_counter" value="1" id="input_@item.id" name="qty[]"/>
+                                                                <input type="button" class="plus" value="+" id="btn_p_@item.id" onclick="plus(@item.id)" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top:5%">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-warning btn-fab demo waves-effect waves-light" onclick="submit_form();">
+                                    <span class="tf-icons mdi mdi-checkbox-marked-circle-outline me-1"></span>Submit
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary waves-effect">
+                                    <span class="tf-icons mdi mdi-close-box-outline me-1"></span>Reset
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+       
+
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-primary me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+            $.get('../Masters/Delete_branch?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+            })
+            }
+        })
+    }
+
+}
+@section Scripts1{
+    <script>
+        function minus(id) {
+            var text = $("#input_" + id).val();
+            if (text > 1) {
+                text = Number(text) - 1;
+                $("#input_" +id).val(text);
+            }
+        }
+
+        function plus(id) {
+            var text = $("#input_" + id).val();
+            
+                text = Number(text) + 1;
+            $("#input_" +id).val(text);
+            
+        }
+
+        function submit_form() {
+            var sList = "";
+            var sqty = "";
+            $('input[type=checkbox]:checked').each(function () {
+                sList += $(this).val() + ",";
+                sqty += $("#input_" + $(this).val()).val() + ",";
+            });
+            $("#hdnproductid").val(sList);
+            $("#hdnqty").val(sqty);
+            $("#frmprint").submit();
+        }
+    </script> 
+}
+
+
+

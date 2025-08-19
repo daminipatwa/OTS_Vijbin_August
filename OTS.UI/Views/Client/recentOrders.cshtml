@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "recentOrders";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+    
+@{
+    <div class="recent-orders-wrapper">
+        <h3>Recent Orders</h3>
+
+        <table class="datatables-basic table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Approval Status</th>
+                    <th>Quantity</th>
+                    <th>Department</th>
+                    <th>Order Status</th>
+                    <th>Rate</th>
+                    <th>Delivery Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.orderid</td>
+                            <td>@item.approvstatus</td>
+                            <td>@item.qty</td>
+                            <td>@item.department</td>
+                            <td>@item.status</td>
+                            <td>@item.amount</td>
+                            <td></td>
+                            <td>
+                                <a href="../client/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a> |
+                                @if (@item.category == "Stationery")
+                                {
+                                    <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+                                }
+                                else
+                                {
+                                    <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+                                }
+                                <button class="btn btn-primary" onclick="edit_qty(@item.id,@item.userid,'@item.orderid')">Accept</button> |
+                                <button class="btn btn-danger" onclick="delete_confirm_pop(@item.id)"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+}

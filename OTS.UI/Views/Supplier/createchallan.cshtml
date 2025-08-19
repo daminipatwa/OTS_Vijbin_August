@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "createchallan";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>Create Challan</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>App.Level 1</th>
+                @* <th>App.Level 2</th>
+                <th>App.Level 3</th> *@
+                <th>Rate</th>
+                <th>Quantity</th>
+                <th>Order Placed Time</th>
+                <th>Action</th>
+                <!-- <th>Level 2</th>
+                <th>Dispatch</th>    -->
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        <td>@item.approvstatus</td>
+                        <td>@item.amount</td>
+                        <td>@item.qty</td>
+                        <td>@item.orderdate</td>
+                        <td>
+                            <a href="../Supplier/viewchallan?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                            |  
+                        </td>
+                    </tr>
+
+                }
+            }
+           
+        </tbody>
+    </table>
+    <!-- <div class="Invoice-buttons-wrapper"> -->
+    <!-- <button class="Invoice-buttons-wrapper" id="vendor-submit-btn">Save</button>
+    <button class="Invoice-buttons-wrapper" id="vendor-reset-btn">Reset</button> -->
+    <!-- </div> -->
+</div>
+<hr>
+

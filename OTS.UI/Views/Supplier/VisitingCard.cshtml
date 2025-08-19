@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "VisitingCard";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="recent-orders-wrapper">
+    <h3>Visiting Products</h3>
+    <a href="../Supplier/UploadedVisitingcard" class="btn btn-success" style="float: right; margin-top: -32px;"><i class="fa-solid fa-upload"></i> Upload Design</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width:10%">Sr No.</th>
+                <th style="width:20%">Image</th>
+                <th>Title Name</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td><img src="../uploads/@item.ImageUrl" style="width:70%"/></td>
+                    <td>@item.Description</td>
+                   
+                    <td><a href="../Supplier/UploadedVisitingcard?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> | <button onclick="Delete_product(@item.id,@item.clientid)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                </tr>
+               
+            }
+          
+        </tbody>
+    </table>
+</div>
+<hr>
+@section scripts1 {
+    <script>
+        function Delete_product(id, clientid) {
+            $.get('../supplier/Delete_product?id=' + id + '&clientid=' + clientid + '', function (html) {
+
+                if (html == "Record Deleted Successfully") {
+                    alert(html);
+                    location.reload();
+                }
+                else {
+                    alert(html);
+                }
+
+
+            })
+        }
+    </script>
+}
+

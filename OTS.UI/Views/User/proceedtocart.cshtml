@@ -1,0 +1,147 @@
+﻿@model OTS.Data.Models.combomodel
+@{
+    ViewData["Title"] = "proceedtocart";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<h3>Proceed to Cart</h3>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="../Order/saveorder">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="shipping_address" value="@Model.CorpUser_Models.shippingaddress1"readonly>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="billing_address" value="@Model.CorpUser_Models.billingaddress"readonly>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Optional Shipping Address" name="shippingaddress2" value="@Model.CorpUser_Models.shippingaddress2">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="remark" placeholder="Remark....">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Approver Name....." value="@Model.CorpUser_Models.approvalby"readonly>
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" style="background-color: rgb(241, 129, 80); border: 1px solid white;">Place Order</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>Overview</h3>
+            </div>
+            <div class="card-body">
+                <div class="table table-responsive">
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th style="width:9%">Image</th>
+                                <th>Product Name</th>
+                                <th>Make</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>HSN Code</th>
+                                <th>GST(%)</th>
+                                <th>Rate</th>
+                                <th>Total Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.cart_Model)
+                            {
+                                   <tr>
+                                    <td><img src="~/uploads/@item.ImageUrl" alt="" id="Overviewimg" style="width:43%"></td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Make</td>
+                                    <td>@item.Category</td>
+                                    <td>@item.qty</td>
+                                    <td>@item.HSN</td>
+                                    <td>@item.gst</td>
+                                    <td>@item.rate</td>
+                                    <td>@item.totalamount</td>
+                                <td>
+                                    <div class="delete-wrapper">
+                                            <button class="btn btn-danger" style="background-color: rgb(241, 129, 80);" onclick="delete_confirm_pop(@item.Id)"><i class="ri-delete-bin-line"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                      
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    function delete_confirm_pop(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                confirmButton: "btn btn-danger me-3 waves-effect waves-light",
+                cancelButton: "btn btn-outline-secondary waves-effect"
+            },
+            buttonsStyling: !1
+        }).then(function (t) {
+            if(t.isConfirmed==true)
+            {
+                 $.get('../User/delete_tocart?id='+id+'', function (html) {
+
+                    if (html == "Record Deleted Successfully") {
+                        success_opup("Success", html)
+                       location.reload();
+                    }
+                    else {
+                        error_opup("Error", html)
+                    }
+
+
+                })
+            }
+        })
+    }
+
+
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://localhost:5225/Supplier/Printinvoice?id=22 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+
+    <link rel="stylesheet" href="../challan/style.css">
+</head>
+
+<body>
+    <div class="invoice-container">
+        <div class="header">
+            <div class="company-info">
+                <h3>Pesio Corporation Private Limited</h3>
+                <p>NO.28, GROUND FLOOR, NEXT TO INDIAN BANK</p>
+                <p>CAR STREET, ULSOOR,</p>
+                <p>BANGALORE - 560008</p>
+                <p>GSTIN/UIN: 29AAJCP0307P1Z1</p>
+                <p>State Name : Karnataka, Code : 29</p>
+                <p>E-Mail : blr@pesio.in</p>
+            </div>
+            <div class="invoice-info">
+                <p>Invoice No: {invoiceno}</p>
+                <p>Dated: {date}</p>
+                <p>Delivery Note: </p>
+                <p>Mode/Terms of Payment:...</p>
+                <p>Delivery Note Date: </p>
+                <p>Destination : </p>
+                <p>Terms of Delievery : </p>
+
+            </div>
+        </div>
+        <div class="customer-info">
+            <div>
+                <h4>(Buyer) Bill To:</h4>
+                <h5>{buyername}</h5>
+                <p>
+                    {addressline1}
+                </p>
+            </div>
+            <div>
+                <h4>(Consignee) Ship To:</h4>
+                <h5>{consigneename}</h5>
+                <p>
+                    {addressline2}
+                </p>
+            </div>
+        </div>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Description of Goods</th>
+                    <th>HSN/SAC</th>
+                    <th>GST Rate</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Per</th>
+                    <th>Disc.%</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+               {item}
+
+            </tbody>
+        </table>
+        <div class="totals">
+            <div class="summary">
+                <p>Output CGST: {cgst}</p>
+                <p>Output SGST: {sgst}</p>
+            </div>
+            <div class="total-amount">
+                <h3>Total: ₹ {grandtotal}</h3>
+            </div>
+        </div>
+    <h5>Amount Chargeable (in words): INR {inword} Only</h5>
+        <div class="footer-main">
+            <div class="footer">
+                <!-- <p>Amount Chargeable (in words): INR Nine Thousand Six Hundred Sixty Four and Sixty Four paise Only</p> -->
+                <p>Company's Bank Details:</p>
+                <p>A/C Holder's Name : PESIO CORPORATION PRIVATE LIMITED</p>
+                <p>Bank Name : yes Bank-004861900003209</p>
+                <p>A/C No. : 004861900003209</p>
+                <p>Branch &amp; IFSC Code : New Thippasandra &amp; YESB0000048</p>
+                <br>
+                <p>Authorized Signatory: Mukesh Ravat</p>
+            </div>
+            <div class="footer2-wrapper">
+                <!-- <p>Amount Chargeable (in words): INR Nine Thousand Six Hundred Sixty Four and Sixty Four paise Only</p> -->
+                <p>Declaration</p>
+                <p>We declare that this invoice shows the actual price of</p>
+                <p>the goods described and that all particulars are true and correct</p>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--<div class="invoice-container">
+        <h2 class="title">Tax Invoice</h2>
+        <p class="sub-title">(Tax Analysis)</p>
+        <div class="invoice-info-head">
+            <p><strong>Invoice No:</strong> 2024-25/G-1090</p>
+            <p style="margin-left: 540px;"><strong>Dated:</strong> 19-Aug-24</p>
+        </div>
+        <div class="invoice-header">-->
+            <!-- <div class="invoice-info">
+                <p><strong>Invoice No:</strong> 2024-25/G-1090</p>
+                <p><strong>Dated:</strong> 19-Aug-24</p>
+            </div> -->
+            <!--<div class="company-info">
+                <p><strong>Pesio Corporation Private Limited</strong></p>
+                <p>NO.28, GROUND FLOOR, NEXT TO INDIAN BANK</p>
+                <p>CAR STREET, ULSOOR, BANGALORE - 560008</p>
+                <p><strong>GSTIN/UIN:</strong> 29AAJCP0307P1Z1</p>
+                <p><strong>State Name:</strong> Karnataka, Code : 29</p>
+                <p><strong>E-Mail :</strong> blr@pesio.in</p>
+            </div>
+            <div class="party-info">
+                <p><strong>Party :</strong> MTO VENTURES Pvt Ltd</p>
+                <p>Sy No. 45/5 (p) and 46/1B, Brigade Triumph, Hebbala</p>
+                <p>Village, Kasaba Hobli, Bengaluru Byatarayanapura</p>
+                <p>North Bangalore 560092</p>
+                <p><strong>GSTIN/UIN :</strong> 29AACM8958B1ZU</p>
+                <p><strong>State Name :</strong> Karnataka, Code : 29</p>
+            </div>
+            
+        </div>
+
+        
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>HSN/SAC</th>
+                    <th>Taxable Value</th>
+                    <th>CGST Rate</th>
+                    <th>CGST Amount</th>
+                    <th>SGST/UTGST Rate</th>
+                    <th>SGST/UTGST Amount</th>
+                    <th>Total Tax Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>33074900</td>
+                    <td>1,860.00</td>
+                    <td>9%</td>
+                    <td>167.40</td>
+                    <td>9%</td>
+                    <td>167.40</td>
+                    <td>334.80</td>
+                </tr>
+                <tr>
+                    <td>630710</td>
+                    <td>96.00</td>
+                    <td>2.50%</td>
+                    <td>2.40</td>
+                    <td>2.50%</td>
+                    <td>2.40</td>
+                    <td>4.80</td>
+                </tr>
+                <tr>
+                    <td>34013090</td>
+                    <td>90.00</td>
+                    <td>9%</td>
+                    <td>8.10</td>
+                    <td>9%</td>
+                    <td>8.10</td>
+                    <td>16.20</td>
+                </tr>
+                <tr>
+                    <td>34029099</td>
+                    <td>1,180.00</td>
+                    <td>9%</td>
+                    <td>106.20</td>
+                    <td>9%</td>
+                    <td>106.20</td>
+                    <td>212.40</td>
+                </tr>
+                <tr>
+                    <td>34022010</td>
+                    <td>750.00</td>
+                    <td>9%</td>
+                    <td>67.50</td>
+                    <td>9%</td>
+                    <td>67.50</td>
+                    <td>135.00</td>
+                </tr>
+                <tr>
+                    <td>34029011</td>
+                    <td>110.00</td>
+                    <td>9%</td>
+                    <td>9.90</td>
+                    <td>9%</td>
+                    <td>9.90</td>
+                    <td>19.80</td>
+                </tr>
+                <tr>
+                    <td>48181000</td>
+                    <td>960.00</td>
+                    <td>9%</td>
+                    <td>86.40</td>
+                    <td>9%</td>
+                    <td>86.40</td>
+                    <td>172.80</td>
+                </tr>
+                <tr>
+                    <td>48025610</td>
+                    <td>490.00</td>
+                    <td>6%</td>
+                    <td>29.40</td>
+                    <td>6%</td>
+                    <td>29.40</td>
+                    <td>58.80</td>
+                </tr>
+                <tr>
+                    <td>39269099</td>
+                    <td>80.00</td>
+                    <td>9%</td>
+                    <td>7.20</td>
+                    <td>9%</td>
+                    <td>7.20</td>
+                    <td>14.40</td>
+                </tr>
+                <tr>
+                    <td>340290</td>
+                    <td>2,200.00</td>
+                    <td>9%</td>
+                    <td>198.00</td>
+                    <td>9%</td>
+                    <td>198.00</td>
+                    <td>396.00</td>
+                </tr>
+                <tr>
+                    <td>0901</td>
+                    <td>1.00</td>
+                    <td>2.50%</td>
+                    <td>0.03</td>
+                    <td>2.50%</td>
+                    <td>0.03</td>
+                    <td>0.06</td>
+                </tr>
+                <tr>
+                    <td>0902</td>
+                    <td>1.00</td>
+                    <td>2.50%</td>
+                    <td>0.03</td>
+                    <td>2.50%</td>
+                    <td>0.03</td>
+                    <td>0.06</td>
+                </tr>
+                <tr>
+                    <td>170113</td>
+                    <td>181.00</td>
+                    <td>2.50%</td>
+                    <td>4.53</td>
+                    <td>2.50%</td>
+                    <td>4.53</td>
+                    <td>9.06</td>
+                </tr>
+                <tr>
+                    <td>220110</td>
+                    <td>120.00</td>
+                    <td>9%</td>
+                    <td>10.80</td>
+                    <td>9%</td>
+                    <td>10.80</td>
+                    <td>21.60</td>
+                </tr>
+                <tr>
+                    <td>82151000</td>
+                    <td>100.00</td>
+                    <td>9%</td>
+                    <td>9.00</td>
+                    <td>9%</td>
+                    <td>9.00</td>
+                    <td>18.00</td>
+                </tr>
+                <tr>
+                    <td>19053100</td>
+                    <td>99.00</td>
+                    <td>9%</td>
+                    <td>8.91</td>
+                    <td>9%</td>
+                    <td>8.91</td>
+                    <td>17.82</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td>8,246.00</td>
+                    <td></td>
+                    <td>709.32</td>
+                    <td></td>
+                    <td>709.32</td>
+                    <td>1,418.64</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="amount-in-words">
+            <p><strong>Tax Amount (in words) :</strong> INR One Thousand Four Hundred Eighteen and Sixty Four paise Only</p>
+        </div>
+        <div class="footer-main">
+            
+            <div class="footer-wrapper">
+                <div class="footer-wrapper-name">
+                    <h3>MUKESH <br> RAVAT</h3>
+                </div>
+                <div class="autho-sign">
+                <h4>for pesio corporation Private Limited</h4>
+                
+                <p>Digitally Signed by</p>
+                <p>Mukesh Ravat</p>
+                <P>Date 2024.08.19 13:48:15</P>
+                <P>+05' 30'</P>
+                
+                <p>Authorized Signatory: Mukesh Ravat</p>
+            </div>
+            </div>
+            
+        </div>
+    </div>-->
+
+    
+
+<!-- Visual Studio Browser Link -->
+<script type="text/javascript" src="./Invoice_files/browserLink" async="async" id="__browserLink_initializationData" data-requestid="95f037460d77446cbea78157415de7eb" data-requestmappingfromserver="false" data-connecturl="http://localhost:50781/5864ba900fb7485096b995ab4b30c42f/browserLink"></script>
+<!-- End Browser Link -->
+<script src="./Invoice_files/aspnetcore-browser-refresh.js.download"></script>
+
+
+<script>
+    window.onload = function () {
+        window.print();
+    }
+</script></body></html>

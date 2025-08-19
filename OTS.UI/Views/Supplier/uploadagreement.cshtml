@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "uploadagreement";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<div class="run-time-order-file-upload">
+    <h3>Upload Agreement</h3>
+     <form method="post" action="#" enctype="multipart/form-data">
+        <input type="hidden" value="0" name="id"/>
+    <div class="form-floating">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="clientid">
+            <option value="0">---Select Client---</option>
+            @foreach (var item in Model.Client_Model)
+            {
+                if (Model.productModel.clientid == item.Id)
+                {
+                    <option value="@item.Id" selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+
+    </div>
+
+    <div class="mb-5">
+        <label for="formFile" class="form-label">Choose file or drop here</label>
+        <input class="form-control" type="file" id="formFile" name="file">
+    </div>
+
+    <button type="submit" class="col-md-12" id="run-time-order-submit-btn">Upload Agreement</button>
+    </form>
+</div>
+

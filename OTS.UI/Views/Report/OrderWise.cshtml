@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "OrderWise";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row">
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">MIS Report Order Wise</h5>
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input type="date" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input type="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button" class="btn btn-primary btn-sm" style="margin-top: 10%;">Search</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label></label>
+                                
+                                <button type="button" class="btn btn-success btn-sm" style="margin-top: 16%;">Export Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-datatable table-responsive pt-0">
+                                <table class="datatables-basic table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch Name</th>
+                                            <th>Order No</th>
+                                            <th>Order Date</th>
+                                            <th>Order Month</th>
+                                            <th>Approved Date</th>
+                                            <th>Status</th>
+                                            <th>Maker Name</th>
+                                            <th>Maker Email Id</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mumbai</td>
+                                            <td>O100002</td>
+                                            <td>26-04-2024</td>
+                                            <td>April</td>
+                                            <td>26-04-2024</td>
+                                            <td>Ordere place</td>
+                                            <td>Nilesh</td>
+                                            <td>nilesh@gmail.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

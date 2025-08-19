@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewData["Title"] = "New_Order";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+ @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<div class="recent-orders-wrapper">
+    <h3>Pending Orders</h3>
+
+    <table class="datatables-basic table table-bordered">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                @* <th>Approval Status</th> *@
+                <th>Quantity</th>
+                <th>Shipping Address</th>
+                <th>Billing Address</th>
+                <th>Optional shipping address</th>
+                <th>Remark</th>
+                <th>Department</th>
+                @* <th>Order Status</th> *@
+                <th>Rate</th>    
+                <th>Ordered Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.orderid</td>
+                        @*<td>@item.approvstatus</td>*@
+                        <td>@item.qty</td>
+                        <td>@item.shipping_address</td>
+                        <td>@item.billing_address</td>
+                        <td>@item.shippingaddress2</td>
+                        <td>@item.remark</td>
+                        <td>@item.department</td>
+                        @*<td>@item.status</td>*@
+                        <td>@item.amount</td>
+                        <td>@item.orderdate</td>
+                        <td><a href="../client/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a> |
+                            @if (@item.category == "Stationery")
+                            {
+                                <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+                            }
+                            else
+                            {
+                                <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
+                            }
+                        <button class="btn btn-primary" onclick="edit_qty(@item.id,@item.userid,'@item.orderid')">Accept</button> |
+                            <button class="btn btn-danger" onclick="delete_confirm_pop(@item.id)"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<hr>
+@section Scripts {
+    @* <script> *@
+        function edit_qty(id,userid,orderid) {
+            @* alert('test'); *@
+                var s="@ViewBag.approval_type";
+                if(s=="0")
+                {
+                    s="6";
+                }
+                else if(s=="3")
+                {
+                    s="2";
+                }
+                $.get('../Order/update_order_status?id=' + id + '&status='+s+'&userid='+userid, function (data) {
+                if (data == "Order Details Update Successfully") {
+                    //success_opup("Success", data);
+                    alert(orderid+" successfully approved");
+                    window.location.reload();
+                }
+                else {
+                    // error_opup("Error", data);
+                    alert("Error");
+                }
+            })
+        }
+    @* </script> *@
+        
+  
+
+}
+@section Scripts1 {
+    <script>
+        function delete_confirm_pop(id) {
+            $.get('../Order/Delete_StationaryOrder?id=' + id + '', function (html) {
+
+                if (html == "Record Deleted Successfully") {
+                    alert(html);
+                    location.reload();
+                }
+                else {
+                    alert(html);
+                    location.reload();
+                }
+
+
+            })
+        }
+    </script>
+}

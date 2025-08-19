@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Visiting_form";
+    Layout = "~/Views/Shared/client_layout.cshtml";
+}
+
+<div class="add-vendor-wrapper">
+                <h3>Visiting Card Details</h3>
+                <form action="/Order/saveorder_visiting" method="post" id="add-vendorform">
+                <input type="hidden" value="0" name="id" />
+                <input type="hidden" value="@TempData["productid"]" name="productid" id="productid" />
+                    <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Company Name" name="company_name">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="First Name" name="first_name">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Last Name" name="last_name">
+                      </div>
+
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Contact No" name="contactno1">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Mail-ID" name="emailid">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Designation" name="designation">
+                      </div>
+
+                      
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Address" name="address">
+                      </div>
+
+                      <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Quantity" name="qty">
+                      </div>
+
+                      <h6>OR</h6>
+                    
+                      <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile01" name="file">
+                      </div>
+
+                      <button type="submit" class="col-md-6" id="vendor-submit-btn">Submit</button>
+                      <button class="col-md-6" id="vendor-reset-btn">Reset</button>
+                      </form>
+                      </div>
+

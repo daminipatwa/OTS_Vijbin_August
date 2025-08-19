@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/supplier_layout.cshtml";
+}
+
+<!-- ----------------------OrderWrapper Start------------------------------>
+<div class="order-wrappers">
+    <a href="../Supplier/UploadedProduct" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <h2>Total Uploaded Product</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.product_uploaded</p>
+        </div>
+    </a>
+    
+
+    <a href="../Supplier/ReleaseOrder" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <h2>Completed Orders</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.complete_order</p>
+        </div>
+    </a>
+
+
+    <a href="../Supplier/UnproceedOrder" class="order-innerWrapper">
+        <div class="order-innerWrapper-main">
+            <i class="fa-solid fa-clock"></i>
+            <h2>Unproceed Orders</h2>
+        </div>
+        <div class="order-innerWrapper-main-footer">
+            <p>@ViewBag.icompelete_order</p>
+        </div>
+    </a> 
+
+</div>
+<hr>
+<!-- ----------------------OrderWrapper END ------------------------------>
+<!-- ----------------------Add Vendor Form Start------------------------------>
+<div class="add-vendor-wrapper">
+    <h3>Add Client</h3>
+    <form method="post" id="add-vendorform" action="../Supplier/Client">
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Name" name="name">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Email ID" name="emailid">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Phone" name="mobileno">
+        </div>
+
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="State" name="state">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="GST" name="gst">
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Location" name="location">
+        </div>
+        
+        <select class="form-group mb-3 col-md-6 form-select-sm" aria-label="Small select example" name="category">
+            <option selected value="1">Stationary</option>
+            <option value="2">Visiting</option>
+            <option value="3">Printing</option>
+            <option value="4">Hardware / Supply</option>
+            <option value="5">Book List</option>
+        </select>
+
+        <div class="form-group mb-3 col-md-6">
+            <input class="form-control" id="inputdefault" placeholder="Region" name="region">
+        </div>
+
+        <button type="submit" class="col-md-6" id="vendor-submit-btn">Submit</button>
+        <button class="col-md-6" id="vendor-reset-btn">Reset</button>
+    </form>
+</div>
+
+
+<hr>
+
+<!-- ----------------------Add Vendor Form End------------------------------>
+<!-- ----------------------Recent Orders Start------------------------------>
+
+<div class="recent-orders-wrapper">
+    <h3>Recent Orders</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Quantity</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>MRP</th>
+                <th>Ordered Date</th>
+                <th>Shipping Address</th>
+                <th>Billing Address</th>
+                <th>Optional Shipping Address</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.order_list_model)
+                {
+                    <tr>
+                        <td><a href="../Supplier/vieworder?id=@item.id"></a>@item.orderid</td>
+                        <td>@item.qty</td>
+                        <td>@item.department</td>
+                        <td>@item.category</td>
+                        <td>@item.amount</td>
+                        <td>@item.orderdate</td>   
+                        <td>@item.shipping_address</td>
+                        <td>@item.billing_address</td>
+                        <td>@item.shippingaddress2</td>
+                        <td>@item.remark</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<hr>
+
+<!-- ----------------------Recent Orders End------------------------------>
+<!-- ----------------------Activity Start------------------------------>
+
+<div class="activity-main-container">
+    <!-- <h3>Activity</h3> -->
+
+    <div class="activity-left-wrapper">
+        <div class="piechart-wrapper">
+
+            <figure class="pie-chart">
+
+                <figcaption>
+                    Approved Orders 38<span style="color:#f4520d"></span><br>
+                    Pending Orders 10<span style="color:#fb7b44"></span><br>
+                    Reject Orders 6<span style="color:#fb9564"></span>
+                </figcaption>
+
+            </figure>
+
+        </div><br><hr>
+
+        <div class="piechart-wrapper-footer">
+
+            <div class="piechart-wrapper-footer-detail1">
+                <i class="fa-solid fa-arrow-up"> 0 % </i>
+                <h5>Customers Growth</h5>
+            </div>
+            <div class="piechart-wrapper-footer-detail2">
+                <i class="fa-solid fa-arrow-up"> 0 % </i>
+                <h5>Page Views</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="activity-right-wrapper">
+        <div class="activity-wrappers">
+
+            <div class="activity-details">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+
+            <div class="activity-details">
+                <p>Pending Orders</p>
+                <span>100</span>
+            </div>
+        </div>
+
+        <div class="activity-wrappers">
+            <div class="activity-details">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="activity-details">
+                <p>Run Time Order</p>
+                <span>150</span>
+            </div>
+        </div>
+
+        <div class="activity-wrappers">
+            <div class="activity-details">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="activity-details">
+                <p>MIS Report</p>
+                <span>200</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ----------------------Activity End------------------------------>

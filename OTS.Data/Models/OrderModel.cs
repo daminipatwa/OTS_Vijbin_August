@@ -60,10 +60,12 @@ namespace OTS.Data.Models
         public string approvel_1 { get; set; }
         public string approvel_2 { get; set; }
         public string approvel_3 { get; set; }
+        public string approvel_4 { get; set; }
 
         public int approve_1 { get; set; }
         public int approve_2 { get; set; }
         public int approve_3 { get; set; }
+        public int approve_4 { get; set; }
 
         public int is_reject {  get; set; }
         public int is_challan { get; set; }

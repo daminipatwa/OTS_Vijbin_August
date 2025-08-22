@@ -734,17 +734,16 @@ namespace OTS.UI.Controllers
                     {
                         ap2 = item.approve_2.ToString();
                     }
-                    else {
-                        if (is_true == 0)
-                        {
-                            ap2 = Request.Cookies["userid"].ToString();
-                            is_true = 1;
-                        }
+                    else
+                    {
+                        ap2 = Request.Cookies["userid"].ToString();
+                        is_true = 1;
                     }
                     if (item.approvel_3 != null)
                     {
                         ap3 = item.approve_3.ToString();
                     }
+<<<<<<< HEAD
                     else 
                         //if (is_true == 0)
                         {
@@ -752,6 +751,22 @@ namespace OTS.UI.Controllers
                             is_true = 1;
                         }
                     
+=======
+                    else
+                    {
+                        ap3 = Request.Cookies["userid"].ToString();
+                        is_true = 1;
+                    }
+                    if (item.approvel_4 != null)
+                    {
+                        ap3 = item.approve_4.ToString();
+                    }
+                    else
+                    {
+                        ap4 = Request.Cookies["userid"].ToString();
+                        is_true = 1;
+                    }
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                 }
 
                 //var newString = result.PadLeft(4, '0');
@@ -810,7 +825,7 @@ namespace OTS.UI.Controllers
                     {
                         TempData["Msg"] = "Order Updated Successfully";
                     }
-                    if (status == 12) // approval by vendor
+                    if (status == 12) 
                     {
                         var result2 = await _corpRepository.getdataByIdsync(Convert.ToInt32(user.approveby));
 
@@ -860,6 +875,7 @@ namespace OTS.UI.Controllers
             }
             catch (Exception ex)
             {
+                
                 TempData["MsgType"] = "Error";
                 TempData["Msg"] = ex.Message;
                 return ex.Message;

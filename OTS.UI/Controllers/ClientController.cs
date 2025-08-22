@@ -303,17 +303,16 @@ namespace OTS.UI.Controllers
                 {
                     if (user.approval_type == 1)
                     {
-                        var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
+                        var Result = await _orderRepository.getorderlist(4, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
                     else
                     {
-                        var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
+                        var Result = await _orderRepository.getorderlist(3, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
-
                 }
                 else
                 {
@@ -322,19 +321,41 @@ namespace OTS.UI.Controllers
                     return View(Result);*/
                     if (user.approval_type == 3)
                     {
+                        var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
+                        ViewBag.approval_type = user.approval_type;
+                        return View(Result);
+                    }
+<<<<<<< HEAD
+
+                }
+                else
+                {
+                    /*var Result = await _orderRepository.getorderlist(1, 0, "", "User", userid);
+                    ViewBag.approval_type = user.approval_type;
+                    return View(Result);*/
+                    if (user.approval_type == 3)
+=======
+                    else if(user.approval_type == 4)
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
+                    {
                         var Result = await _orderRepository.getorderlist(1, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
                     else
                     {
+<<<<<<< HEAD
                         var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
+=======
+                        var Result = await _orderRepository.getorderlist(3, 0, "", "Client", userid);
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
                 }
             }
-            else {
+            else 
+            {
                 return Redirect("../Account/Login");
             }
         }

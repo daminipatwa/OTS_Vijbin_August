@@ -710,7 +710,8 @@ namespace OTS.UI.Controllers
                 var Result = await _orderRepository.getorderlist(0, id);
                 string ap1 = "0";
                 string ap2 = "0";
-                string ap3 = "";
+                string ap3 = "0";
+                string ap4 = "0";
                 int is_true = 0;
                 string orderid = "";
                 string qty = "0";
@@ -744,13 +745,13 @@ namespace OTS.UI.Controllers
                     {
                         ap3 = item.approve_3.ToString();
                     }
-                    else {
-                        if (is_true == 0)
+                    else 
+                        //if (is_true == 0)
                         {
                             ap3 = Request.Cookies["userid"].ToString();
                             is_true = 1;
                         }
-                    }
+                    
                 }
 
                 //var newString = result.PadLeft(4, '0');
@@ -776,6 +777,7 @@ namespace OTS.UI.Controllers
                 ObjParm.Add("@app1",ap1);
                 ObjParm.Add("@app2", ap2);
                 ObjParm.Add("@app3", ap3);
+                ObjParm.Add("@app4", ap4);
                 if (user != null)
                 {
                     ObjParm.Add("@approval_for", user.approveby);
@@ -819,7 +821,7 @@ namespace OTS.UI.Controllers
                         var Result1 = await _orderRepository.get_order_details(id);
                         foreach (var item in Result1)
                         {
-                            tblitem += "<tr><td><img src='http://erp.vijbin.com/uploads/" + item.ImageUrl + "'/></td><td>" + item.Description + "</td><td>" + item.qty + "</td><td>" + item.rate + "</td><td>" + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + "</td></tr>";
+                            tblitem += "<tr><td><img src='https://erp.vijbin.com/uploads/" + item.ImageUrl + "'/></td><td>" + item.Description + "</td><td>" + item.qty + "</td><td>" + item.rate + "</td><td>" + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + "</td></tr>";
                         }
                         s = s.Replace("{item}", tblitem);
 
@@ -843,7 +845,7 @@ namespace OTS.UI.Controllers
                             msg += "<p><b>Total Items:</b> " + qty + "</p>";
                             msg += "<p><b>Total Price:</b> " + amount + "</p>";
                             msg += "<p>You can also approve the order just by clicking the below URL:</p>";
-                            msg += "http://erp.vijbin.com/Client/new_Order";
+                            msg += "https://erp.vijbin.com/Client/new_Order";
                             _sendMail.Send_Mail(result2.emailid, "Order Approval Required for Order No. " + orderid + "", msg);
                         }
                     }

@@ -325,7 +325,18 @@ namespace OTS.UI.Controllers
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
+<<<<<<< HEAD
+
+                }
+                else
+                {
+                    /*var Result = await _orderRepository.getorderlist(1, 0, "", "User", userid);
+                    ViewBag.approval_type = user.approval_type;
+                    return View(Result);*/
+                    if (user.approval_type == 3)
+=======
                     else if(user.approval_type == 4)
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                     {
                         var Result = await _orderRepository.getorderlist(1, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
@@ -333,7 +344,11 @@ namespace OTS.UI.Controllers
                     }
                     else
                     {
+<<<<<<< HEAD
+                        var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
+=======
                         var Result = await _orderRepository.getorderlist(3, 0, "", "Client", userid);
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
@@ -1050,13 +1065,22 @@ namespace OTS.UI.Controllers
         //========Product Wise====================
 
         [HttpGet]
-        public async Task<ActionResult> ExportToExcel(int id = 0, string barcode = "", int supplierid = 0, int qty = 0, int type = 0, int catgeoryid = 0)
+        public async Task<ActionResult> ExportToExcel(int id = 0, string barcode = "", int supplierid = 0, int qty = 0, int type = 0, int catgeoryid = 0, string f = "", string t = "")
         {
-            var result = await _orderRepository.getorderbyproduct();
+            if (f == "")
+            {
+                f = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+            }
+            if (t == "")
+            {
+                t = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            var result = await _orderRepository.getorderbyproduct(0, f, t);
             //exportfile(result.ToList());
             DataTable dt = new DataTable();
             dt.Columns.Add("Order Id", typeof(string));
             dt.Columns.Add("Product Name", typeof(string));
+            dt.Columns.Add("Name", typeof(string));
             dt.Columns.Add("Product Category", typeof(string));
             dt.Columns.Add("GST (%)", typeof(string));
             dt.Columns.Add("HSN Code", typeof(string));
@@ -1066,7 +1090,7 @@ namespace OTS.UI.Controllers
             foreach (var item in result)
             {
 
-                dt.Rows.Add(item.orderid, item.name, item.category, item.gst, item.hsn, item.qty, item.rate, item.orderdate);
+                dt.Rows.Add(item.orderid, item.Description,item.name, item.category, item.gst, item.hsn, item.qty, item.rate, item.orderdate);
 
 
             }

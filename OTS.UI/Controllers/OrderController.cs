@@ -710,8 +710,7 @@ namespace OTS.UI.Controllers
                 var Result = await _orderRepository.getorderlist(0, id);
                 string ap1 = "0";
                 string ap2 = "0";
-                string ap3 = "0";
-                string ap4 = "0";
+                string ap3 = "";
                 int is_true = 0;
                 string orderid = "";
                 string qty = "0";
@@ -734,28 +733,23 @@ namespace OTS.UI.Controllers
                     {
                         ap2 = item.approve_2.ToString();
                     }
-                    else
-                    {
-                        ap2 = Request.Cookies["userid"].ToString();
-                        is_true = 1;
+                    else {
+                        if (is_true == 0)
+                        {
+                            ap2 = Request.Cookies["userid"].ToString();
+                            is_true = 1;
+                        }
                     }
                     if (item.approvel_3 != null)
                     {
                         ap3 = item.approve_3.ToString();
                     }
-                    else
-                    {
-                        ap3 = Request.Cookies["userid"].ToString();
-                        is_true = 1;
-                    }
-                    if (item.approvel_4 != null)
-                    {
-                        ap3 = item.approve_4.ToString();
-                    }
-                    else
-                    {
-                        ap4 = Request.Cookies["userid"].ToString();
-                        is_true = 1;
+                    else {
+                        if (is_true == 0)
+                        {
+                            ap3 = Request.Cookies["userid"].ToString();
+                            is_true = 1;
+                        }
                     }
                 }
 
@@ -782,7 +776,6 @@ namespace OTS.UI.Controllers
                 ObjParm.Add("@app1",ap1);
                 ObjParm.Add("@app2", ap2);
                 ObjParm.Add("@app3", ap3);
-                ObjParm.Add("@app4", ap4);
                 if (user != null)
                 {
                     ObjParm.Add("@approval_for", user.approveby);
@@ -815,7 +808,7 @@ namespace OTS.UI.Controllers
                     {
                         TempData["Msg"] = "Order Updated Successfully";
                     }
-                    if (status == 12) 
+                    if (status == 12) // approval by vendor
                     {
                         var result2 = await _corpRepository.getdataByIdsync(Convert.ToInt32(user.approveby));
 
@@ -826,7 +819,7 @@ namespace OTS.UI.Controllers
                         var Result1 = await _orderRepository.get_order_details(id);
                         foreach (var item in Result1)
                         {
-                            tblitem += "<tr><td><img src='https://erp.vijbin.com/uploads/" + item.ImageUrl + "'/></td><td>" + item.Description + "</td><td>" + item.qty + "</td><td>" + item.rate + "</td><td>" + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + "</td></tr>";
+                            tblitem += "<tr><td><img src='http://erp.vijbin.com/uploads/" + item.ImageUrl + "'/></td><td>" + item.Description + "</td><td>" + item.qty + "</td><td>" + item.rate + "</td><td>" + (Convert.ToDecimal(item.qty) * Convert.ToDecimal(item.rate)) + "</td></tr>";
                         }
                         s = s.Replace("{item}", tblitem);
 
@@ -850,7 +843,7 @@ namespace OTS.UI.Controllers
                             msg += "<p><b>Total Items:</b> " + qty + "</p>";
                             msg += "<p><b>Total Price:</b> " + amount + "</p>";
                             msg += "<p>You can also approve the order just by clicking the below URL:</p>";
-                            msg += "https://erp.vijbin.com/Client/new_Order";
+                            msg += "http://erp.vijbin.com/Client/new_Order";
                             _sendMail.Send_Mail(result2.emailid, "Order Approval Required for Order No. " + orderid + "", msg);
                         }
                     }
@@ -865,7 +858,6 @@ namespace OTS.UI.Controllers
             }
             catch (Exception ex)
             {
-                
                 TempData["MsgType"] = "Error";
                 TempData["Msg"] = ex.Message;
                 return ex.Message;

@@ -70,22 +70,10 @@
                 {
                     s="6";
                 }
-                else if(s=="3"){
-                    s="3";
-                }
-                else if(s=="2")
+                else if(s=="3")
                 {
-                    s="4";
+                    s="2";
                 }
-                else if(s=="1")
-                {
-                    s="6";
-                }
-                else if(s=="4")
-                {
-                    s="2"
-                }
-                
                 $.get('../Order/update_order_status?id=' + id + '&status='+s+'&userid='+userid, function (data) {
                 if (data == "Order Details Update Successfully") {
                     //success_opup("Success", data);

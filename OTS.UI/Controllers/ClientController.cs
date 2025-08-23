@@ -303,44 +303,26 @@ namespace OTS.UI.Controllers
                 {
                     if (user.approval_type == 1)
                     {
-                        var Result = await _orderRepository.getorderlist(4, 0, "", "Client", userid);
+                        var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
                     else
-                    {
-                        var Result = await _orderRepository.getorderlist(3, 0, "", "Client", userid);
-                        ViewBag.approval_type = user.approval_type;
-                        return View(Result);
-                    }
-                }
-                else
-                {
-                    /*var Result = await _orderRepository.getorderlist(1, 0, "", "User", userid);
-                    ViewBag.approval_type = user.approval_type;
-                    return View(Result);*/
-                    if (user.approval_type == 3)
                     {
                         var Result = await _orderRepository.getorderlist(2, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
-                    else if(user.approval_type == 4)
-                    {
-                        var Result = await _orderRepository.getorderlist(1, 0, "", "Client", userid);
-                        ViewBag.approval_type = user.approval_type;
-                        return View(Result);
-                    }
-                    else
-                    {
-                        var Result = await _orderRepository.getorderlist(3, 0, "", "Client", userid);
-                        ViewBag.approval_type = user.approval_type;
-                        return View(Result);
-                    }
+
+                }
+                else
+                {
+                    var Result = await _orderRepository.getorderlist(1, 0, "", "User", userid);
+                    ViewBag.approval_type = user.approval_type;
+                    return View(Result);
                 }
             }
-            else 
-            {
+            else {
                 return Redirect("../Account/Login");
             }
         }

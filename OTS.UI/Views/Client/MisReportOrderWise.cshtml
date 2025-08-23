@@ -6,7 +6,7 @@
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
     <!-- ----------------------Recent Orders Start------------------------------>
-
+<div class="recent-orders-wrapper">
         <h3>MIS Report Order wise</h3>
         <div class="date-wrapper">
             <div class="inputs">
@@ -25,9 +25,9 @@
                 </div>
 
 
-        <button class="btn btn-primary" type="submit" onclick="getrecord()">Search</button>
-        <button class="btn btn-primary" type="button" onclick="export_pdf()" style="margin-left:6px">PDF</button>
-                 <button class="btn btn-primary" type="button" onclick="export_excel()" style="margin-left:6px">Excel</button>
+                <button class="btn btn-primary" type="submit" onclick="getrecord()">Search</button>
+                <button class="btn btn-primary" type="button" onclick="export_pdf()" style="margin-left:6px">PDF</button>
+                <button class="btn btn-primary" type="button" onclick="export_excel()" style="margin-left:6px">Excel</button>
 
 
 
@@ -67,6 +67,7 @@
 
 
     <hr>
+</div>
 
 
 <script>

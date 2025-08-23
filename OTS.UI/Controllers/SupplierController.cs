@@ -236,7 +236,7 @@ namespace OTS.UI.Controllers
                 }
 
 
-                List<CostCenter> costlist = new List<CostCenter>();
+                /*List<CostCenter> costlist = new List<CostCenter>();
                 var result1 = await _costRepository.getdatasync();
                 foreach (var item in result1)
                 {
@@ -244,7 +244,7 @@ namespace OTS.UI.Controllers
                     model.Id = item.Id;
                     model.Name = item.Name;
                     costlist.Add(model);
-                }
+                }*/
 
 
                 List<DepartmentModel> departmentlist = new List<DepartmentModel>();
@@ -258,7 +258,7 @@ namespace OTS.UI.Controllers
                     departmentlist.Add(model);
                 }
 
-                List<BranchModel> branchlist = new List<BranchModel>();
+                /*List<BranchModel> branchlist = new List<BranchModel>();
                 var result5 = await _branchRepository.getdatasync();
                 foreach (var item in result5)
                 {
@@ -267,7 +267,7 @@ namespace OTS.UI.Controllers
                     model.Name = item.Name;
 
                     branchlist.Add(model);
-                }
+                }*/
 
                 List<UserTypeModel> usertypetlist = new List<UserTypeModel>();
                 var result3 = await _corpRepository.getusertype();
@@ -294,9 +294,9 @@ namespace OTS.UI.Controllers
                 combolist.CorpUser_Models = corpmodel;
 
                 combolist.Client_Model = list;
-                combolist.costCenters = costlist;
+                /*combolist.costCenters = costlist;*/
                 combolist.departmentModels = departmentlist;
-                combolist.branchModels = branchlist;
+                /*combolist.branchModels = branchlist;*/
                 combolist.CorpUserModels = corptlist;
                 combolist.UserTypeModels = usertypetlist;
                 return View(combolist);
@@ -315,7 +315,7 @@ namespace OTS.UI.Controllers
                 }
 
 
-                List<CostCenter> costlist = new List<CostCenter>();
+                /*List<CostCenter> costlist = new List<CostCenter>();
                 var result1 = await _costRepository.getdatasync();
                 foreach (var item in result1)
                 {
@@ -324,7 +324,7 @@ namespace OTS.UI.Controllers
                     model.Name = item.Name;
                     costlist.Add(model);
                 }
-
+*/
 
                 List<DepartmentModel> departmentlist = new List<DepartmentModel>();
                 var result4 = await _departmentRepository.getdatasync();
@@ -337,7 +337,7 @@ namespace OTS.UI.Controllers
                     departmentlist.Add(model);
                 }
 
-                List<BranchModel> branchlist = new List<BranchModel>();
+                /*List<BranchModel> branchlist = new List<BranchModel>();
                 var result5 = await _branchRepository.getdatasync();
                 foreach (var item in result4)
                 {
@@ -346,7 +346,7 @@ namespace OTS.UI.Controllers
                     model.Name = item.Name;
 
                     branchlist.Add(model);
-                }
+                }*/
 
                 List<UserTypeModel> usertypetlist = new List<UserTypeModel>();
                 var result3 = await _corpRepository.getusertype();
@@ -371,9 +371,9 @@ namespace OTS.UI.Controllers
                 }
 
                 combolist.Client_Model = list;
-                combolist.costCenters = costlist;
+                /*combolist.costCenters = costlist;*/
                 combolist.departmentModels = departmentlist;
-                combolist.branchModels = branchlist;
+                /*combolist.branchModels = branchlist;*/
                 combolist.CorpUserModels = corptlist;
                 combolist.UserTypeModels = usertypetlist;
                 CorpUserModel corpmodel = new CorpUserModel();
@@ -726,14 +726,14 @@ namespace OTS.UI.Controllers
         }
         public async Task<ActionResult> AllOrder(string f = "", string t = "")
         {
-            if (f == "")
+            /*if (f == "")
             {
                 f = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
             }
             if (t == "")
             {
                 t = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
-            }
+            }*/
             var result = await _orderRepository.getorderlist(6,0,"","",0,f,t);
             return View(result);
         }

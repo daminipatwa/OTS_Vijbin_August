@@ -23,6 +23,7 @@ namespace OTS.Data.Models
         public int srno { get; set; }
         public int qty { get; set; }
         public string orderdate { get; set; }
+        public string username { get; set; }
 
         public string gst { get; set; }
 
@@ -48,6 +49,7 @@ namespace OTS.Data.Models
         public string qty { get; set; }
         public string department { get; set; }
         public string status { get; set; }
+        public string username { get; set; }
         public string amount { get; set; }
         public string del_date { get; set; }
         public string orderdate { get; set; }

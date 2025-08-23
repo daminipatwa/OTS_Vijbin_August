@@ -7,18 +7,16 @@
 <div class="recent-orders-wrapper">
     <h3>Pending Orders</h3>
 
-    <table class="datatables-basic table table-bordered">
+    <table class="datatables-basic table table-bordered" style="width:max-content;">
         <thead>
             <tr>
                 <th>Order Id</th>
-                @* <th>Approval Status</th> *@
+                <th>Ordered by</th>
                 <th>Quantity</th>
                 <th>Shipping Address</th>
                 <th>Billing Address</th>
                 <th>Optional shipping address</th>
                 <th>Remark</th>
-                <th>Department</th>
-                @* <th>Order Status</th> *@
                 <th>Rate</th>    
                 <th>Ordered Date</th>
                 <th>Action</th>
@@ -29,27 +27,17 @@
                 foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.orderid</td>
-                        @*<td>@item.approvstatus</td>*@
+                        <td><a href="../client/vieworder?id=@item.id">@item.orderid</a></td>
+                        <td>@item.username</td>
                         <td>@item.qty</td>
                         <td>@item.shipping_address</td>
                         <td>@item.billing_address</td>
                         <td>@item.shippingaddress2</td>
                         <td>@item.remark</td>
-                        <td>@item.department</td>
-                        @*<td>@item.status</td>*@
                         <td>@item.amount</td>
                         <td>@item.orderdate</td>
-                        <td><a href="../client/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a> |
-                            @if (@item.category == "Stationery")
-                            {
-                                <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
-                            }
-                            else
-                            {
-                                <a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <span>|</span>
-                            }
-                        <button class="btn btn-primary" onclick="edit_qty(@item.id,@item.userid,'@item.orderid')">Accept</button> |
+                        <td><a href="../client/Edit_orer?id=@item.id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> |
+                            <button class="btn btn-success" onclick="edit_qty(@item.id,@item.userid,'@item.orderid')"><i class="fa-solid fa-check"></i></button> |
                             <button class="btn btn-danger" onclick="delete_confirm_pop(@item.id)"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>

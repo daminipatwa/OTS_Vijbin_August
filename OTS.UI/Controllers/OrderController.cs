@@ -689,23 +689,24 @@ namespace OTS.UI.Controllers
             }
         }
 
-        public async Task<string> update_order_status(int id,int status,int userid,string remark, string shipping_address, string billing_address,string shippingaddress2)
+        public async Task<string> update_order_status(int id, int status, int userid, string remark, string shipping_address, string billing_address, string shippingaddress2)
         {
             try
             {
                 CorpUserModel user = new CorpUserModel();
-                if(status == 12)
+                if (status == 12)
                 {
                     var order = (await _orderRepository.getorderbyid(id)).FirstOrDefault();
                     user = await _corpRepository.getdataByIdsync(order.userid);
-                    
+
                     //get user obect based on order created by
                     //_orderRepository.get_order_details
-                } else
+                }
+                else
                 {
                     user = await _corpRepository.getdataByIdsync(Convert.ToInt32(Request.Cookies["userid"].ToString()));
                 }
-                
+
 
                 var Result = await _orderRepository.getorderlist(0, id);
                 string ap1 = "0";
@@ -716,17 +717,18 @@ namespace OTS.UI.Controllers
                 string orderid = "";
                 string qty = "0";
                 string amount = "0";
-                
+
                 foreach (var item in Result)
                 {
                     orderid = item.orderid;
-                    qty=item.qty;
+                    qty = item.qty;
                     amount = item.amount;
                     if (item.approvel_1 != null)
                     {
                         ap1 = item.approve_1.ToString();
                     }
-                    else {
+                    else
+                    {
                         ap1 = Request.Cookies["userid"].ToString();
                         is_true = 1;
                     }
@@ -743,15 +745,6 @@ namespace OTS.UI.Controllers
                     {
                         ap3 = item.approve_3.ToString();
                     }
-<<<<<<< HEAD
-                    else 
-                        //if (is_true == 0)
-                        {
-                            ap3 = Request.Cookies["userid"].ToString();
-                            is_true = 1;
-                        }
-                    
-=======
                     else
                     {
                         ap3 = Request.Cookies["userid"].ToString();
@@ -766,7 +759,6 @@ namespace OTS.UI.Controllers
                         ap4 = Request.Cookies["userid"].ToString();
                         is_true = 1;
                     }
->>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                 }
 
                 //var newString = result.PadLeft(4, '0');
@@ -786,10 +778,11 @@ namespace OTS.UI.Controllers
                 {
                     ObjParm.Add("@status", 6);
                 }
-                else {
+                else
+                {
                     ObjParm.Add("@status", status);
                 }
-                ObjParm.Add("@app1",ap1);
+                ObjParm.Add("@app1", ap1);
                 ObjParm.Add("@app2", ap2);
                 ObjParm.Add("@app3", ap3);
                 ObjParm.Add("@app4", ap4);
@@ -797,7 +790,8 @@ namespace OTS.UI.Controllers
                 {
                     ObjParm.Add("@approval_for", user.approveby);
                 }
-                else {
+                else
+                {
                     ObjParm.Add("@approval_for", 0);
                 }
                 ObjParm.Add("@srno", "0");
@@ -815,7 +809,7 @@ namespace OTS.UI.Controllers
                 await _orderRepository.AddAsync(ObjParm);
                 var i = ObjParm.Get<dynamic>("@result");
                 if (i > 0)
-                { 
+                {
                     TempData["MsgType"] = "Success";
                     if (id == 0)
                     {
@@ -825,7 +819,7 @@ namespace OTS.UI.Controllers
                     {
                         TempData["Msg"] = "Order Updated Successfully";
                     }
-                    if (status == 12) 
+                    if (status == 12)
                     {
                         var result2 = await _corpRepository.getdataByIdsync(Convert.ToInt32(user.approveby));
 
@@ -840,7 +834,7 @@ namespace OTS.UI.Controllers
                         }
                         s = s.Replace("{item}", tblitem);
 
-                      string  msg = s;
+                        string msg = s;
                         _sendMail.Send_Mail("rder@erp.vijbin.com.com", "Order Approval Required for Order No. " + orderid + "", msg);
                     }
                     else
@@ -875,7 +869,7 @@ namespace OTS.UI.Controllers
             }
             catch (Exception ex)
             {
-                
+
                 TempData["MsgType"] = "Error";
                 TempData["Msg"] = ex.Message;
                 return ex.Message;

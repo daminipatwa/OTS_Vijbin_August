@@ -50,9 +50,8 @@
                                             <th>Department</th>
                                             <th>Order Status</th>
                                             <th>Rate</th>
-                                            <th>Delivery Date</th>
-                                            <th>Approve Order</th>
-                                            <th></th>
+                                            <th>order Date</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,14 +59,13 @@
                                             foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>@item.orderid</td>
+                                                    <td><a href="../Supplier/ViewOrder?id=@item.id">@item.orderid</a></td>
                                                     <td>@item.qty</td>
                                                     <td>@item.department</td>
                                                     <td>@item.approvstatus</td>
                                                     <td>@item.amount</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td> <a href="../Supplier/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a></td>
+                                                    <td>@item.orderdate</td>
+                                                    @*<td> <a href="../Supplier/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a></td>*@
                                                 </tr>
 
                                             }

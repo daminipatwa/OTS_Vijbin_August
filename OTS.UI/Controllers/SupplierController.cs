@@ -2154,6 +2154,72 @@ namespace OTS.UI.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ExportToExcel_ReleaseOrder()
+        {
+            try
+            {
+                var Result = await _orderRepository.getorderlistforvendor(16);
+
+                if (Result == null || !Result.Any())
+                {
+                    return BadRequest("No data found for export.");
+                }
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Order Id", typeof(string));
+                dt.Columns.Add("Qty", typeof(int));
+                dt.Columns.Add("Department", typeof(string));
+                dt.Columns.Add("Order Status", typeof(string));
+                dt.Columns.Add("Totalprice", typeof(string));
+                dt.Columns.Add("Ordered Date", typeof(string));
+
+                var groupedOrders = Result
+                    .GroupBy(x => x.orderid)
+                    .Select(g => new
+                    {
+                        OrderId = g.Key,
+                        Qty = g.Sum(x => string.IsNullOrWhiteSpace(x.qty) ? 0 : Convert.ToInt32(x.qty)),
+                        Department = g.First().department,
+                        OrderStatus = g.First().status,
+                        TotalPrice = g.First().amount,
+                        OrderedDate = g.First().orderdate
+                    });
+
+                foreach (var item in groupedOrders)
+                {
+                    dt.Rows.Add(
+                        item.OrderId,
+                        item.Qty,
+                        item.Department,
+                        item.OrderStatus,
+                        item.TotalPrice,
+                        item.OrderedDate
+                    );
+                }
+
+                using (var wb = new XLWorkbook())
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        wb.AddWorksheet(dt, "ReleaseOrder");
+                        wb.SaveAs(ms);
+                        ms.Seek(0, SeekOrigin.Begin);
+
+                        return File(ms.ToArray(),
+                                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                    "ApprovedOrder.xlsx");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log server side error
+                Console.WriteLine("EXPORT ERROR: " + ex);
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
+        }
+
         public void exportfile(List<OrderModel> model)
         {
             using (var workbook = new XLWorkbook())

@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label></label>
 
-                                <button type="button" class="btn btn-success btn-sm" style="margin-top: 16%;">Export Excel</button>
+                                <button type="button" id="btnExportRelease" class="btn btn-success btn-sm" style="margin-top: 16%;">Export Excel</button>
                             </div>
                         </div>
                     </div>
@@ -50,9 +50,8 @@
                                             <th>Department</th>
                                             <th>Order Status</th>
                                             <th>Rate</th>
-                                            <th>Delivery Date</th>
-                                            <th>Approve Order</th>
-                                            <th></th>
+                                            <th>order Date</th>
+                                            @* <th></th> *@
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,14 +59,13 @@
                                             foreach (var item in Model)
                                             {
                                                 <tr>
-                                                    <td>@item.orderid</td>
+                                                    <td><a href="../Supplier/ViewOrder?id=@item.id">@item.orderid</a></td>
                                                     <td>@item.qty</td>
                                                     <td>@item.department</td>
-                                                    <td>@item.approvstatus</td>
+                                                    <td>@item.status</td>
                                                     <td>@item.amount</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td> <a href="../Supplier/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a></td>
+                                                    <td>@item.orderdate</td>
+                                                   @* <td> <a href="../Supplier/vieworder?id=@item.id" class="btn btn-warning"><i class="fas fa-eye"></i></a></td>*@
                                                 </tr>
 
                                             }
@@ -87,4 +85,39 @@
     </div>
 
 </div>
+<script>
+    document.getElementById("btnExportRelease").addEventListener("click", function () {
+        fetch("../Supplier/ExportToExcel_ReleaseOrder")
+            .then(response => {
+                const contentType = response.headers.get("content-type") || "";
 
+                // Check for server errors
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text); });
+                }
+
+                // If server returned HTML (like login page), throw error
+                if (!contentType.includes("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+                    return response.text().then(text => {
+                        throw new Error("Unexpected response (HTML/Text received instead of Excel):\n" + text);
+                    });
+                }
+
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "ReleaseOrder.xlsx";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error("Export error:", error);
+                alert("Export Failed: " + error.message);
+            });
+    });
+</script>

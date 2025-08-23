@@ -65,6 +65,24 @@
     @* <script> *@
         function edit_qty(id,userid,orderid) {
             @* alert('test'); *@
+<<<<<<< HEAD
+                    var s="@ViewBag.approval_type";
+                    if(s=="0")
+                    {
+                     s="6";
+                    }
+                   else if(s=="3"){
+                    s="2";
+                    }
+                   else if(s=="2")
+                    {
+                    s="3";
+                    }
+                    else if(s=="1")
+                    {
+                    s="6";
+                    }
+=======
                 var s="@ViewBag.approval_type";
                 if(s=="0")
                 {
@@ -86,6 +104,7 @@
                     s="2"
                 }
                 
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                 $.get('../Order/update_order_status?id=' + id + '&status='+s+'&userid='+userid, function (data) {
                 if (data == "Order Details Update Successfully") {
                     //success_opup("Success", data);

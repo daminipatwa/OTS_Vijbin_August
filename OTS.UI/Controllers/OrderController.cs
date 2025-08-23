@@ -743,6 +743,15 @@ namespace OTS.UI.Controllers
                     {
                         ap3 = item.approve_3.ToString();
                     }
+<<<<<<< HEAD
+                    else 
+                        //if (is_true == 0)
+                        {
+                            ap3 = Request.Cookies["userid"].ToString();
+                            is_true = 1;
+                        }
+                    
+=======
                     else
                     {
                         ap3 = Request.Cookies["userid"].ToString();
@@ -757,6 +766,7 @@ namespace OTS.UI.Controllers
                         ap4 = Request.Cookies["userid"].ToString();
                         is_true = 1;
                     }
+>>>>>>> 44278b0ea5548a6d38c04ab8ea96302cff6ac0b4
                 }
 
                 //var newString = result.PadLeft(4, '0');

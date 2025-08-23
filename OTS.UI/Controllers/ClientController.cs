@@ -116,7 +116,6 @@ namespace OTS.UI.Controllers
                 order_List_Model.shipping_address = item.shipping_address;
                 order_List_Model.remark = item.remark;
                 order_List_Model.category = item.category;
-
             }
 
             foreach (var item in Result1)
@@ -127,7 +126,8 @@ namespace OTS.UI.Controllers
                 {
                     model.qty = item.updated_qty;
                 }
-                else {
+                else 
+                {
                     model.qty = item.qty;
                 }
                 
@@ -177,10 +177,7 @@ namespace OTS.UI.Controllers
 
             foreach (var item in result)
             {
-
                 dt.Rows.Add(item.orderid, item.qty, item.department, item.status, item.amount, item.orderdate);
-
-
             }
             string base64String;
 
@@ -325,7 +322,8 @@ namespace OTS.UI.Controllers
                         ViewBag.approval_type = user.approval_type;
                         return View(Result);
                     }
-                    else if(user.approval_type == 4)
+                  
+                    else if (user.approval_type == 4)
                     {
                         var Result = await _orderRepository.getorderlist(1, 0, "", "Client", userid);
                         ViewBag.approval_type = user.approval_type;
@@ -339,6 +337,7 @@ namespace OTS.UI.Controllers
                     }
                 }
             }
+
             else 
             {
                 return Redirect("../Account/Login");
